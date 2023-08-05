@@ -14,8 +14,10 @@
 <h2>Future plans so far</h2>
 <p>Some of the things I have in mind include:</p>
 <ul>
-  <li></li>
   <li>Adding SDL support, because GUI slaps hard</li>
   <li>Making web scraping easier, because the reddit api pricing is a joke</li>
+  <li>Winning the Nobel Peace Prize</li>
+  <li>Getting drown in money and fame</li>
+  <li>Watching youtube videos with my dog</li>
 </ul>
-<p>(Not all of it is guaranteed to be implemented tho...)</p>
+<p>(Not all of the above is guaranteed to happen tho...)</p>
