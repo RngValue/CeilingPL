@@ -8,19 +8,23 @@ map<string, string> opcodes;
 
 void upt_dict() {
     opcodes.insert(pair<string, string>("libs", "#include <stdio.h>\n#include <stdbool.h>\n#include <stdlib.h>\nint update();\n"));
+    //Default functions
     opcodes.insert(pair<string, string>("start:", "int main(void) {\n"));
     opcodes.insert(pair<string, string>("update:", "update();\n}\n\nint update() {\nwhile(true) {\n"));
+    //Variables
     opcodes.insert(pair<string, string>("INTV", "int \1 = \2;\n"));
     opcodes.insert(pair<string, string>("STRV", "char \1[] = \"\2\";\n"));
     opcodes.insert(pair<string, string>("CHRV", "char \1 = \2;\n"));
     opcodes.insert(pair<string, string>("FLOV", "float \1 = \2;\n"));
     opcodes.insert(pair<string, string>("BOOV", "bool \1 = \2;\n"));
+    //Console
     opcodes.insert(pair<string, string>("COUT", "printf(\"\1\"\2);\n"));
     opcodes.insert(pair<string, string>("CCIN", "fflush(stdin);\nscanf(\"\1\",\2);\n"));
     opcodes.insert(pair<string, string>("CGIN", "fflush(stdin);\ngetc(stdin);\n"));
     opcodes.insert(pair<string, string>("CTER", "exit(0);\n"));
 }
 
+//Documentation
 const int MAX_HELP_PAGES = 2;
 void print_dict(char page){
     cout << "======================PAGE " << page << "/" << MAX_HELP_PAGES << "=======================" << endl;
@@ -31,7 +35,7 @@ void print_dict(char page){
             cout << "update:" << "\t\t\t\t" << "Loops code that belongs to it." << endl;
             cout << "[variables]" << endl;
             cout << "INTV [name] [value]" << "\t\t" << "Declares an integer." << endl;
-            cout << "STRV [name] [value]" << "\t\t" << "Declares a string." << endl;
+            cout << "STRV [name] [value]" << "\t\t" << "Declares a string. (Which is just an array of characters)" << endl;
             cout << "CHRV [name] [value]" << "\t\t" << "Declares a character." << endl;
             cout << "FLOV [name] [value]" << "\t\t" << "Declares a float." << endl;
             cout << "BOOV [name] [value]" << "\t\t" << "Declares a boolean." << endl;

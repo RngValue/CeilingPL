@@ -31,57 +31,44 @@ string systemComFail;
 
 const char Separators[] = { ' ', 9 };
 
-bool Str_IsSeparator( const char Ch )
-{
-    for ( size_t i = 0; i != sizeof( Separators ); i++ )
-    {
+bool Str_IsSeparator( const char Ch ) {
+    for ( size_t i = 0; i != sizeof( Separators ); i++ ) {
         if ( Separators[i] == Ch ) { return true; }
     }
-
     return false;
 }
 
-void tokenize_string( size_t FromToken, size_t ToToken, const std::string& Str, std::vector<std::string>& Components /*, bool ShouldTrimSpaces*/ )
-{
+void tokenize_string( size_t FromToken, size_t ToToken, const std::string& Str, std::vector<std::string>& Components /*, bool ShouldTrimSpaces*/ ) {
     size_t TokenNum = 0;
     size_t Offset   = FromToken - 1;
 
     const char* CStr  = Str.c_str();
     const char* CStrj = Str.c_str();
 
-    while ( *CStr )
-    {
+    while ( *CStr ) {
         // bypass spaces & delimiting chars
         while ( *CStr && Str_IsSeparator( *CStr ) ) { CStr++; }
-
         if ( !*CStr ) { return; }
-
         bool InsideQuotes = ( *CStr == '\"' );
-
-        if ( InsideQuotes )
-        {
+        if ( InsideQuotes ) {
             for ( CStrj = ++CStr; *CStrj && *CStrj != '\"'; CStrj++ );
         }
-        else
-        {
+        else {
             for ( CStrj = CStr; *CStrj && !Str_IsSeparator( *CStrj ); CStrj++ );
         }
-
         // extract token
         if ( CStr != CStrj )
         {
             TokenNum++;
-
             // store each token found
             if ( TokenNum >= FromToken )
             {
-                  Components[ TokenNum-Offset ].assign( CStr, CStrj );
-                  // if ( ShouldTrimSpaces ) { Str_TrimSpaces( &Components[ TokenNum-Offset ] ); }
-                  // proceed to next token
-                  if ( TokenNum >= ToToken ) { return; }
+                Components[ TokenNum-Offset ].assign( CStr, CStrj );
+                // if ( ShouldTrimSpaces ) { Str_TrimSpaces( &Components[ TokenNum-Offset ] ); }
+                // proceed to next token
+                if ( TokenNum >= ToToken ) { return; }
             }
             CStr = CStrj;
-
             // exclude last " from token, handle EOL
             if ( *CStr ) { CStr++; }
         }
@@ -97,7 +84,7 @@ bool replace(std::string& str, const std::string& from, const std::string& to) {
 }
 
 int main(int argc, char* argv[]) {
-    upt_dict();
+    upt_dict(); //Loads a map dictionary from dict.h
     if (argc < 2) {
         cout << "Please, use any of these arguments:" << endl;
         cout << "\"o (.ceil file) (output file)\"\tCompiles your code to an executable file" << endl;
