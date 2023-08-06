@@ -41,7 +41,7 @@ void print_dict(char page){
             cout << "COUT [string] [variable/value]" << "\t" << "Outputs a string into the console. Allows C-like formating." << endl;
             cout << "CCIN [string] [variable]" << "\t" << "Checks user input and stores it into a variable. (Just like scanf in C)" << endl;
             cout << "CGIN" << "\t\t\t\t" << "Waits for user to press enter." << endl;
-            cout << "CTER" << "\t\t\t\t" << "Terminates program (can be used to stop the update function)" << endl;
+            cout << "CTER" << "\t\t\t\t" << "Terminates program." << endl;
             break;
         default:
             cout << "Page " << page << " doesn't exist.\n";
