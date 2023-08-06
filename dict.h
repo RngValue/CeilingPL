@@ -16,6 +16,8 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("FLOV", "float \1 = \2;\n"));
     opcodes.insert(pair<string, string>("BOOV", "bool \1 = \2;\n"));
     opcodes.insert(pair<string, string>("COUT", "printf(\"\1\"\2);\n"));
+    opcodes.insert(pair<string, string>("CCIN", "fflush(stdin);\nscanf(\"\1\",\2);\n"));
+    opcodes.insert(pair<string, string>("CGIN", "fflush(stdin);\ngetc(stdin);\n"));
     opcodes.insert(pair<string, string>("CTER", "exit(0);\n"));
 }
 
@@ -25,7 +27,7 @@ void print_dict(char page){
     switch(page){
         case '1':
             cout << "[default functions]" << endl;
-            cout << "start:" << "\t\t\t\t" << "Think of it as the \"main\" function. Should always be on the first line." << endl;
+            cout << "start:" << "\t\t\t\t" << "Think of it as the \"main\" function." << endl;
             cout << "update:" << "\t\t\t\t" << "Loops code that belongs to it." << endl;
             cout << "[variables]" << endl;
             cout << "INTV [name] [value]" << "\t\t" << "Declares an integer." << endl;
@@ -37,7 +39,8 @@ void print_dict(char page){
         case '2':
             cout << "[console]" << endl;
             cout << "COUT [string] [variable/value]" << "\t" << "Outputs a string into the console. Allows C-like formating." << endl;
-            cout << "CINP [string] [variable]" << "\t" << "Waits for user input. (not functional... yet)" << endl;
+            cout << "CCIN [string] [variable]" << "\t" << "Checks user input and stores it into a variable. (Just like scanf in C)" << endl;
+            cout << "CGIN" << "\t\t\t\t" << "Waits for user to press enter." << endl;
             cout << "CTER" << "\t\t\t\t" << "Terminates program (can be used to stop the update function)" << endl;
             break;
         default:

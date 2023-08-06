@@ -157,6 +157,16 @@ int main(int argc, char* argv[]) {
                 }
                 outfile << ccode;
             }
+            if (code == "CCIN") {
+                ccode = opcodes["CCIN"];
+                replace(ccode, "\1", tokens[2]);
+                replace(ccode, "\2", tokens[3]);
+                outfile << ccode;
+            }
+            if (code == "CGIN") {
+                ccode = opcodes["CGIN"];
+                outfile << ccode;
+            }
             if (code == "CTER") {
                 ccode = opcodes["CTER"];
                 outfile << ccode;
