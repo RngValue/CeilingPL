@@ -117,7 +117,8 @@ int main(int argc, char* argv[]) {
             if (code == "start:" || code == "update:") {}
             else outfile << "line" << lineNumber << ":" << endl;
 
-            //Checking opcodes and converting to C
+            ///Checking opcodes and converting to C
+            // Default functions
             if (code == "start:") {
                 outfile << opcodes["start:"];
                 outfile << "line" << lineNumber << ":" << endl;
@@ -127,6 +128,7 @@ int main(int argc, char* argv[]) {
                 outfile << "line" << lineNumber << ":" << endl;
                 updateExists = true;
             }
+            //Console
             if (code == "COUT") {
                 ccode = opcodes["COUT"];
                 replace(ccode, "\1", tokens[2]);
@@ -158,6 +160,7 @@ int main(int argc, char* argv[]) {
                 ccode = opcodes["CTER"];
                 outfile << ccode;
             }
+            //Variables
             if (code == "INTV") {
                 ccode = opcodes["INTV"];
                 replace(ccode, "\1", tokens[2]);

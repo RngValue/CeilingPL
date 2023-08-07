@@ -22,10 +22,16 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("CCIN", "fflush(stdin);\nscanf(\"\1\",\2);\n"));
     opcodes.insert(pair<string, string>("CGIN", "fflush(stdin);\ngetc(stdin);\n"));
     opcodes.insert(pair<string, string>("CTER", "exit(0);\n"));
+    //Conditionals
+    opcodes.insert(pair<string, string>("WHEN", "if (\1"));
+    opcodes.insert(pair<string, string>("ELIF", "} else if (\1"));
+    opcodes.insert(pair<string, string>("ELSE", "} else {"));
+    opcodes.insert(pair<string, string>("THEN", ") {\n"));
+    opcodes.insert(pair<string, string>("END", "}"));
 }
 
 //Documentation
-const int MAX_HELP_PAGES = 2;
+const int MAX_HELP_PAGES = 3;
 void print_dict(char page){
     cout << "======================PAGE " << page << "/" << MAX_HELP_PAGES << "=======================" << endl;
     switch(page){
@@ -46,6 +52,13 @@ void print_dict(char page){
             cout << "CCIN [string] [variable]" << "\t" << "Checks user input and stores it into a variable. (Just like scanf in C)" << endl;
             cout << "CGIN" << "\t\t\t\t" << "Waits for user to press enter." << endl;
             cout << "CTER" << "\t\t\t\t" << "Terminates program." << endl;
+            break;
+        case '3':
+            cout << "[conditions & loops]" << endl;
+            cout << "WHEN [condition] THEN" << "\t" << "Outputs a string into the console. Allows C-like formating." << endl;
+            cout << "ELIF [condition] THEN" << "\t" << "Checks user input and stores it into a variable. (Just like scanf in C)" << endl;
+            cout << "ELSE" << "\t\t\t\t" << "Waits for user to press enter." << endl;
+            cout << "END" << "\t\t\t\t" << "Terminates program." << endl;
             break;
         default:
             cout << "Page " << page << " doesn't exist.\n";
