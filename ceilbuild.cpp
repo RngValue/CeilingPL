@@ -191,6 +191,51 @@ int main(int argc, char* argv[]) {
                 replace(ccode, "\2", tokens[3]);
                 outfile << ccode;
             }
+            //Conditions and loops
+            if (code == "WHEN") {
+                ccode = opcodes["WHEN"];
+                if (tokens[2] == ""){
+                    replace(ccode, "\1", "");
+                }else{
+                    for (int i = 2; i<tokens.size(); i++) {
+                        if (tokens[i] != "") {
+                            if (tokens[i] == "THEN") { ccodeargs << opcodes["THEN"]; } else {
+                                ccodeargs << " ";
+                                ccodeargs << tokens[i];
+                            }
+                        }
+                    }
+                    replace(ccode, "\1", ccodeargs.str());
+                    ccodeargs.str(string());
+                }
+                outfile << ccode;
+            }
+            if (code == "ELIF") {
+                ccode = opcodes["ELIF"];
+                if (tokens[2] == ""){
+                    replace(ccode, "\1", "");
+                }else{
+                    for (int i = 2; i<tokens.size(); i++) {
+                        if (tokens[i] != "") {
+                            if (tokens[i] == "THEN") { ccodeargs << opcodes["THEN"]; } else {
+                                ccodeargs << " ";
+                                ccodeargs << tokens[i];
+                            }
+                        }
+                    }
+                    replace(ccode, "\1", ccodeargs.str());
+                    ccodeargs.str(string());
+                }
+                outfile << ccode;
+            }
+            if (code == "ELSE") {
+                ccode = opcodes["ELSE"];
+                outfile << ccode;
+            }
+            if (code == "END") {
+                ccode = opcodes["END"];
+                outfile << ccode;
+            }
         }
         if(updateExists) { outfile << "}}"; } else { outfile << "}"; }
         outfile.close();

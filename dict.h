@@ -25,9 +25,9 @@ void upt_dict() {
     //Conditionals
     opcodes.insert(pair<string, string>("WHEN", "if (\1"));
     opcodes.insert(pair<string, string>("ELIF", "} else if (\1"));
-    opcodes.insert(pair<string, string>("ELSE", "} else {"));
+    opcodes.insert(pair<string, string>("ELSE", "} else {\n"));
     opcodes.insert(pair<string, string>("THEN", ") {\n"));
-    opcodes.insert(pair<string, string>("END", "}"));
+    opcodes.insert(pair<string, string>("END", "}\n"));
 }
 
 //Documentation
@@ -55,10 +55,10 @@ void print_dict(char page){
             break;
         case '3':
             cout << "[conditions & loops]" << endl;
-            cout << "WHEN [condition] THEN" << "\t" << "Outputs a string into the console. Allows C-like formating." << endl;
-            cout << "ELIF [condition] THEN" << "\t" << "Checks user input and stores it into a variable. (Just like scanf in C)" << endl;
-            cout << "ELSE" << "\t\t\t\t" << "Waits for user to press enter." << endl;
-            cout << "END" << "\t\t\t\t" << "Terminates program." << endl;
+            cout << "WHEN [condition] THEN" << "\t\t" << "If statement." << endl;
+            cout << "ELIF [condition] THEN" << "\t\t" << "Else if statement" << endl;
+            cout << "ELSE" << "\t\t\t\t" << "Else statement." << endl;
+            cout << "END" << "\t\t\t\t" << "Marks an end of a condition/loop." << endl;
             break;
         default:
             cout << "Page " << page << " doesn't exist.\n";
