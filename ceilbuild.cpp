@@ -202,7 +202,7 @@ int main(int argc, char* argv[]) {
                 }else{
                     for (int i = 2; i<tokens.size(); i++) {
                         if (tokens[i] != "") {
-                            if (tokens[i] == "THEN") { ccodeargs << opcodes["THEN"]; } else {
+                            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeargs << opcodes["THEN"]; } else {
                                 ccodeargs << " ";
                                 ccodeargs << tokens[i];
                             }
@@ -220,7 +220,7 @@ int main(int argc, char* argv[]) {
                 }else{
                     for (int i = 2; i<tokens.size(); i++) {
                         if (tokens[i] != "") {
-                            if (tokens[i] == "THEN") { ccodeargs << opcodes["THEN"]; } else {
+                            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeargs << opcodes["THEN"]; } else {
                                 ccodeargs << " ";
                                 ccodeargs << tokens[i];
                             }
