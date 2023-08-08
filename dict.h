@@ -56,7 +56,7 @@ void print_dict(char page){
         case '3':
             cout << "[conditions & loops]" << endl;
             cout << "IF [condition] THEN" << "\t\t" << "If statement." << endl;
-            cout << "ELIF [condition] THEN" << "\t\t" << "Else if statement" << endl;
+            cout << "ELIF [condition] THEN" << "\t\t" << "Else if statement." << endl;
             cout << "ELSE" << "\t\t\t\t" << "Else statement." << endl;
             cout << "END" << "\t\t\t\t" << "Marks an end of a condition/loop." << endl;
             break;
