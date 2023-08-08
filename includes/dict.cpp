@@ -1,10 +1,9 @@
-#pragma once
 #include <iostream>
 #include <map>
 
-using namespace std;
+using std::pair;
 
-map<string, string> opcodes;
+std::map<string, string> opcodes;
 
 void upt_dict() {
     opcodes.insert(pair<string, string>("libs", "#include <stdio.h>\n#include <stdbool.h>\n#include <stdlib.h>\nint update();\n"));

@@ -5,29 +5,34 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
-#include "dict.h"
 
 using std::cout;
+using std::string;
+using std::endl;
+
+#include "includes/dict.cpp"
+
+//using std::cout;
 
 const int MAX_TOKENS = 10;
-const char CEILING_VERSION[] = "Ceiling Programming Language v0.1";
+const char CEILING_VERSION[] = "Ceiling Programming Language v0.1-DEV1";
 
 int lineNumber = 0;
 int tokenCount = 0;
 
 bool updateExists = false;
 
-vector<string> tokens;
+std::vector<string> tokens;
 
-stringstream ccodeargs;
+std::stringstream ccodeargs;
+std::stringstream sstm;
+std::stringstream systemCom;
+
 string preTok;
 string code;
 string ccode;
 string line;
 string argument;
-
-stringstream sstm;
-stringstream systemCom;
 string systemComFail;
 
 const char Separators[] = { ' ', 9 };
@@ -94,8 +99,8 @@ int main(int argc, char* argv[]) {
     }
     argument = argv[1];
     if (argument == "-o"){ //THE ACTUAL COMPILER
-        ifstream myfile;
-        ofstream outfile("output.c");
+        std::ifstream myfile;
+        std::ofstream outfile("output.c");
         myfile.open(argv[2]);
         if(myfile.fail()) {
             perror("Couldn't open the file");
