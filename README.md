@@ -6,7 +6,7 @@
 <p>The compiler goes through these steps:</p>
 <ol>
   <li>Check line</li>
-  <li>Convert line to C code (hence why the logo is a reskin of the C logo)</li>
+  <li>Convert line to C code</li>
   <li>Repeat until there are no lines left</li>
   <li>Finally, use gcc to compile our C code</li>
 </ol>
