@@ -10,7 +10,7 @@
   <li>Repeat until there are no lines left</li>
   <li>Finally, use gcc to compile our C code</li>
 </ol>
-<p>(gcc is required for it to work)</p>
+<p><sub>(gcc is required for it to work)</sub></p>
 <p>I first had planned to use x86 assembly language instead of C... but I actually don't know assembly language yet... so C it is!</p>
 
 <h2>Future plans so far</h2>
