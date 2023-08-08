@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 #include <string>
 #include <sstream>
 #include <fstream>
@@ -115,8 +116,10 @@ int main(int argc, char* argv[]) {
             code = tokens[1];
             //cout << tokens[0] << " " << tokens[1] << " " << tokens[2] << endl;
             if (code == "start:" || code == "update:") {}
-            else outfile << "line" << lineNumber << ":" << endl;
+            else {outfile << "line" << lineNumber << ":" << endl;}
 
+            if (code[code.length()-1] != ':') transform(code.begin(), code.end(), code.begin(), ::toupper);
+            //cout << code;
             ///Checking opcodes and converting to C
             // Default functions
             if (code == "start:") {
