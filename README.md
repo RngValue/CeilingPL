@@ -25,4 +25,4 @@
   <li>Becoming the leader of the whole universe</li>
   <li>Adding Functions</li>
 </ul>
-<p>(None of the above is guaranteed to happen tho...)</p>
+<p><sub>(None of the above is guaranteed to happen tho...)</sub></p>
