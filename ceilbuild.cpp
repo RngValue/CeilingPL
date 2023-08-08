@@ -195,8 +195,8 @@ int main(int argc, char* argv[]) {
                 outfile << ccode;
             }
             //Conditions and loops
-            if (code == "WHEN") {
-                ccode = opcodes["WHEN"];
+            if (code == "IF") {
+                ccode = opcodes["IF"];
                 if (tokens[2] == ""){
                     replace(ccode, "\1", "");
                 }else{

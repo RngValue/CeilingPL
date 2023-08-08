@@ -23,7 +23,7 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("CGIN", "fflush(stdin);\ngetc(stdin);\n"));
     opcodes.insert(pair<string, string>("CTER", "exit(0);\n"));
     //Conditionals
-    opcodes.insert(pair<string, string>("WHEN", "if (\1"));
+    opcodes.insert(pair<string, string>("IF", "if (\1"));
     opcodes.insert(pair<string, string>("ELIF", "} else if (\1"));
     opcodes.insert(pair<string, string>("ELSE", "} else {\n"));
     opcodes.insert(pair<string, string>("THEN", ") {\n"));
@@ -55,7 +55,7 @@ void print_dict(char page){
             break;
         case '3':
             cout << "[conditions & loops]" << endl;
-            cout << "WHEN [condition] THEN" << "\t\t" << "If statement." << endl;
+            cout << "IF [condition] THEN" << "\t\t" << "If statement." << endl;
             cout << "ELIF [condition] THEN" << "\t\t" << "Else if statement" << endl;
             cout << "ELSE" << "\t\t\t\t" << "Else statement." << endl;
             cout << "END" << "\t\t\t\t" << "Marks an end of a condition/loop." << endl;
