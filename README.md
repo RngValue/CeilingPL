@@ -8,6 +8,8 @@
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
 <p>For a very simple documentation, use this:</p>
 <pre><code>ceilbuild -h [page number]</code></pre>
+<p>You can check your ceilbuild's version using this command:</p>
+<pre><code>ceilbuild -v</code></pre>
 <p>To quit Vim, do this:</p>
 <pre><code>:q!</code></pre>
 
