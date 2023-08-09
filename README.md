@@ -3,7 +3,7 @@
 <p align=center><sub><sub>(I am seriously considering changing the logo...)</sub></sub></p>
 
 <h2>How it works</h2>
-<p>The Ceiling Compiler is written in C++ and compiles the language into C code, which is then compiled using gcc.</p>
+<p>The Ceiling Compiler is written in C++ and compiles your project into C code, which is then compiled using gcc.</p>
 <p>You would compile your project using terminal command:</p>
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
 <p>For a very simple documentation, use this:</p>
