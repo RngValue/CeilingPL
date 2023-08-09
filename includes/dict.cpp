@@ -1,6 +1,9 @@
 #include <iostream>
 #include <map>
 
+using std::cout;
+using std::string;
+using std::endl;
 using std::pair;
 
 std::map<string, string> opcodes;
@@ -25,6 +28,8 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("IF", "if (\1"));
     opcodes.insert(pair<string, string>("ELIF", "} else if (\1"));
     opcodes.insert(pair<string, string>("ELSE", "} else {\n"));
+    opcodes.insert(pair<string, string>("FOR", "for (int \1 = 0; \1<=\2; \1++"));
+    opcodes.insert(pair<string, string>("WHILE", "while (\1"));
     opcodes.insert(pair<string, string>("THEN", ") {\n"));
     opcodes.insert(pair<string, string>("END", "}\n"));
 }
@@ -57,6 +62,8 @@ void print_dict(char page){
             cout << "IF [condition] THEN" << "\t\t" << "If statement." << endl;
             cout << "ELIF [condition] THEN" << "\t\t" << "Else if statement." << endl;
             cout << "ELSE" << "\t\t\t\t" << "Else statement." << endl;
+            cout << "FOR [itirator] IN [range] THEN" << "\t" << "For loop." << endl;
+            cout << "WHILE [condition] THEN" << "\t\t" << "While loop." << endl;
             cout << "END" << "\t\t\t\t" << "Marks an end of a condition/loop." << endl;
             break;
         default:

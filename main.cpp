@@ -6,11 +6,11 @@
 #include <fstream>
 #include <vector>
 
+#include "includes/dict.cpp"
+
 using std::cout;
 using std::string;
 using std::endl;
-
-#include "includes/dict.cpp"
 
 //using std::cout;
 
