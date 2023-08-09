@@ -7,6 +7,7 @@
 <p>You would compile your project using this command:</p>
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
 <p>For a very simple documentation, use this:</p>
+<p>I am currently not working on a proper documentation yet, so this is all you get at the moment.</p>
 <pre><code>ceilbuild -h [page number]</code></pre>
 <p>You can check your ceilbuild's version using this command:</p>
 <pre><code>ceilbuild -v</code></pre>
