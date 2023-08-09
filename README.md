@@ -8,6 +8,7 @@
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
 <p>For a very simple documentation use this:</p>
 <pre><code>ceilbuild -h [page number]</code></pre>
+
 <h2>Future plans so far</h2>
 <p>Some of the things I have in mind include:</p>
 <ul>
