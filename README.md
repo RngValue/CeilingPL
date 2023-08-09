@@ -6,8 +6,10 @@
 <p>The Ceiling Compiler is written in C++ and compiles the language into C code, which is then compiled using gcc.</p>
 <p>You would compile your project using terminal command:</p>
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
-<p>For a very simple documentation use this:</p>
+<p>For a very simple documentation, use this:</p>
 <pre><code>ceilbuild -h [page number]</code></pre>
+<p>To quit Vim, do this:</p>
+<pre><code>:q!</code></pre>
 
 <h2>Future plans so far</h2>
 <p>Some of the things I have in mind include:</p>
