@@ -28,8 +28,9 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("IF", "if (\1"));
     opcodes.insert(pair<string, string>("ELIF", "} else if (\1"));
     opcodes.insert(pair<string, string>("ELSE", "} else {\n"));
-    opcodes.insert(pair<string, string>("FOR", "for (int \1 = 0; \1<=\2; \1++"));
+    opcodes.insert(pair<string, string>("FOR", "for (int \1 = 0; \1<=\2; \1++\3"));
     opcodes.insert(pair<string, string>("WHILE", "while (\1"));
+    opcodes.insert(pair<string, string>("BREAK", "break;\n"));
     opcodes.insert(pair<string, string>("THEN", ") {\n"));
     opcodes.insert(pair<string, string>("END", "}\n"));
 }

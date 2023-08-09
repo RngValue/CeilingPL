@@ -20,11 +20,13 @@ const char CEILING_VERSION[] = "Ceiling Programming Language v0.1-DEV1";
 int lineNumber = 0;
 int tokenCount = 0;
 
+bool isInRange = false;
 bool updateExists = false;
 
 std::vector<string> tokens;
 
-std::stringstream ccodeargs;
+std::stringstream ccodeArgs;
+std::stringstream ccodeArgsAdd;
 std::stringstream sstm;
 std::stringstream systemCom;
 
@@ -145,12 +147,12 @@ int main(int argc, char* argv[]) {
                 }else{
                     for (int i = 3; i<tokens.size(); i++) {
                         if (tokens[i] != ""){
-                            ccodeargs << ", ";
-                            ccodeargs << tokens[i];
+                            ccodeArgs << ", ";
+                            ccodeArgs << tokens[i];
                         }
                     }
-                    replace(ccode, "\2", ccodeargs.str());
-                    ccodeargs.str(string());
+                    replace(ccode, "\2", ccodeArgs.str());
+                    ccodeArgs.str(string());
                 }
                 outfile << ccode;
             }
@@ -207,14 +209,14 @@ int main(int argc, char* argv[]) {
                 }else{
                     for (int i = 2; i<tokens.size(); i++) {
                         if (tokens[i] != "") {
-                            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeargs << opcodes["THEN"]; } else {
-                                ccodeargs << " ";
-                                ccodeargs << tokens[i];
+                            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; } else {
+                                ccodeArgs << " ";
+                                ccodeArgs << tokens[i];
                             }
                         }
                     }
-                    replace(ccode, "\1", ccodeargs.str());
-                    ccodeargs.str(string());
+                    replace(ccode, "\1", ccodeArgs.str());
+                    ccodeArgs.str(string());
                 }
                 outfile << ccode;
             }
@@ -225,19 +227,74 @@ int main(int argc, char* argv[]) {
                 }else{
                     for (int i = 2; i<tokens.size(); i++) {
                         if (tokens[i] != "") {
-                            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeargs << opcodes["THEN"]; } else {
-                                ccodeargs << " ";
-                                ccodeargs << tokens[i];
+                            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; } else {
+                                ccodeArgs << " ";
+                                ccodeArgs << tokens[i];
                             }
                         }
                     }
-                    replace(ccode, "\1", ccodeargs.str());
-                    ccodeargs.str(string());
+                    replace(ccode, "\1", ccodeArgs.str());
+                    ccodeArgs.str(string());
                 }
                 outfile << ccode;
             }
             if (code == "ELSE") {
                 ccode = opcodes["ELSE"];
+                outfile << ccode;
+            }
+            if (code == "FOR") {
+                ccode = opcodes["FOR"];
+                if (tokens[2] == ""){
+                    replace(ccode, "\1", "");
+                }else{
+                    for (int i = 2; i<tokens.size(); i++) {
+                        if (tokens[i] != "") {
+                            if (tokens[i] == "THEN" || tokens[i] == "then") {
+                                replace(ccode, "\3", opcodes["THEN"]);
+                                break;
+                            } else if (tokens[i] == "IN" || tokens[i] == "in") {
+                                isInRange = true;
+                            } else {
+                                if (isInRange) {
+                                    ccodeArgsAdd << " ";
+                                    ccodeArgsAdd << tokens[i];
+                                } else {
+                                    ccodeArgs << " ";
+                                    ccodeArgs << tokens[i];
+                                }
+                            }
+                        }
+                    }
+                    replace(ccode, "\1", ccodeArgs.str());
+                    replace(ccode, "\1", ccodeArgs.str());
+                    replace(ccode, "\1", ccodeArgs.str());
+                    replace(ccode, "\2", ccodeArgsAdd.str());
+                    isInRange = false;
+                    ccodeArgs.str(string());
+                    ccodeArgsAdd.str(string());
+                }
+                outfile << ccode;
+            }
+            if (code == "WHILE") {
+                ccode = opcodes["WHILE"];
+                if (tokens[2] == ""){
+                    replace(ccode, "\1", "");
+                }else{
+                    for (int i = 2; i<tokens.size(); i++) {
+                        if (tokens[i] != "") {
+                            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; } else {
+                                ccodeArgs << " ";
+                                ccodeArgs << tokens[i];
+                            }
+                        }
+                    }
+                    replace(ccode, "\1", ccodeArgs.str());
+                    ccodeArgs.str(string());
+                }
+                outfile << ccode;
+            }
+            if (code == "BREAK") {
+                ccode = opcodes["BREAK"];
                 outfile << ccode;
             }
             if (code == "END") {
