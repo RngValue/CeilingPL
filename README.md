@@ -3,15 +3,8 @@
 <p align=center><sub><sub>(I am seriously considering changing the logo...)</sub></sub></p>
 
 <h2>How it works</h2>
-<p>The compiler goes through these steps:</p>
-<ol>
-  <li>Check line</li>
-  <li>Convert line to C code</li>
-  <li>Repeat until there are no lines left</li>
-  <li>Finally, use gcc to compile our C code</li>
-</ol>
-<p><sub>(gcc is required for it to work)</sub></p>
-<p>I first had planned to use x86 assembly language instead of C... but I actually don't know assembly language yet... so C it is!</p>
+<p>The Ceiling Compiler is written in C++ and compiles the language into C code, which is then compiled using gcc.</p>
+<p></p>
 
 <h2>Future plans so far</h2>
 <p>Some of the things I have in mind include:</p>
