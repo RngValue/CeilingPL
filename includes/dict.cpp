@@ -21,7 +21,7 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("CCIN", "fflush(stdin);\nscanf(\"\1\",\2);\n"));
     opcodes.insert(pair<string, string>("CGIN", "fflush(stdin);\ngetc(stdin);\n"));
     opcodes.insert(pair<string, string>("CTER", "exit(0);\n"));
-    //Conditionals
+    //Conditionals & loops
     opcodes.insert(pair<string, string>("IF", "if (\1"));
     opcodes.insert(pair<string, string>("ELIF", "} else if (\1"));
     opcodes.insert(pair<string, string>("ELSE", "} else {\n"));
