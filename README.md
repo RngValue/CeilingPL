@@ -4,7 +4,7 @@
 
 <h2>How it works</h2>
 <p>The Ceiling Compiler is written in C++ and compiles the language into C code, which is then compiled using gcc.</p>
-<p></p>
+<p>You would compile your project using terminal command:</p>
 
 <h2>Future plans so far</h2>
 <p>Some of the things I have in mind include:</p>
