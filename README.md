@@ -4,14 +4,18 @@
 
 <h2>How it works</h2>
 <p>The Ceiling Compiler is written in C++ and compiles your project into C code, which is then compiled using gcc. <br><sub><sub>(Basically, make sure you have gcc working)</sub></sub></p>
-<h3>You would compile your project using this command:</h3>
+<h3>How to compile your project</h3>
+<p>Works similarly to how you would compile your project using gcc/g++. (Depending on the operating system, you would want to include a file extension like ".exe")</p>
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
-<h3>For a very simple documentation, use this:</h3>
+<h3>The documentation:</h3>
+<p>To check all the "opcodes" and the syntax, do this.</p>
 <pre><code>ceilbuild -h [page number]</code></pre>
 <p>I am currently not working on a proper documentation yet, so this is all you get at the moment.</p>
-<h3>You can check your ceilbuild's version using this command:</h3>
+<h3>Checking Version:</h3>
+<p>Do this to check your version.</p>
 <pre><code>ceilbuild -v</code></pre>
-<h3>To quit Vim, do this:</h3>
+<h3>How to quit Vim:</h3>
+<p>Just in case...</p>
 <pre><code>:q!</code></pre>
 <p>It's not related to Ceiling, just wanted to remind you :3.</p>
 
