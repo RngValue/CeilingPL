@@ -93,9 +93,9 @@ int main(int argc, char* argv[]) {
     upt_dict(); //Loads a map dictionary from dict.h
     if (argc < 2) {
         cout << "Please, use any of these arguments:" << endl;
-        cout << "\"o (.ceil file) (output file)\"\tCompiles your code to an executable file" << endl;
-        cout << "\"v\"\t\t\t\tDisplays the Ceiling version installed." << endl;
-        cout << "\"h (page)\"\t\t\tDisplays all the opcodes (2 pages)." << endl;
+        cout << "\"-o [.ceil file] [output file]\"\tCompiles your code to an executable file" << endl;
+        cout << "\"-v\"\t\t\t\tDisplays the Ceiling version installed." << endl;
+        cout << "\"-h [page]\"\t\t\tDisplays all the opcodes." << endl;
     }
     argument = argv[1];
     if (argument == "-o"){ //THE ACTUAL COMPILER
@@ -258,9 +258,9 @@ int main(int argc, char* argv[]) {
         print_dict((char)*argv[2]);
     } else {
         cout << "Please, use any of these arguments:" << endl;
-        cout << "\"o (.ceil file) (output file)\"\tCompiles your code to an executable file" << endl;
-        cout << "\"v\"\t\t\t\tDisplays the Ceiling version installed." << endl;
-        cout << "\"h (page)\"\t\t\tDisplays all the opcodes (2 pages)." << endl;
+        cout << "\"-o [.ceil file] [output file]\"\tCompiles your code to an executable file" << endl;
+        cout << "\"-v\"\t\t\t\tDisplays the Ceiling version installed." << endl;
+        cout << "\"-h [page]\"\t\t\tDisplays all the opcodes." << endl;
     }
     return 0;
 }
