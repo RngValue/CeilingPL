@@ -6,16 +6,16 @@
 <p>The Ceiling Compiler is written in C++ and compiles your project into C code, which is then compiled using gcc. <br><sub><sub>(Basically, make sure you have gcc setup)</sub></sub></p>
 <h3>You would compile your project using this command:</h3>
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
-<p>For a very simple documentation, use this:</p>
+<h3>For a very simple documentation, use this:</h3>
 <p>I am currently not working on a proper documentation yet, so this is all you get at the moment.</p>
 <pre><code>ceilbuild -h [page number]</code></pre>
-<p>You can check your ceilbuild's version using this command:</p>
+<h3>You can check your ceilbuild's version using this command:</h3>
 <pre><code>ceilbuild -v</code></pre>
-<p>To quit Vim, do this:</p>
+<h3>To quit Vim, do this:</h3>
 <pre><code>:q!</code></pre>
 
 <h2>Future plans so far</h2>
-<p>Some of the things I have in mind include:</p>
+<h3>Some of the things I have in mind include:</h3>
 <ul>
   <li>Adding SDL support, because GUI slaps hard</li>
   <li>Making web scraping easier, because the reddit api pricing is a joke</li>
