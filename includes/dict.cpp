@@ -14,14 +14,14 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("start:", "int main(void) {\n"));
     opcodes.insert(pair<string, string>("update:", "update();\n}\n\nint update() {\nwhile(true) {\n"));
     //Variables
-    opcodes.insert(pair<string, string>("INTV", "int \1 = \2;\n"));
-    opcodes.insert(pair<string, string>("STRV", "char \1[] = \"\2\";\n"));
-    opcodes.insert(pair<string, string>("CHRV", "char \1 = \2;\n"));
-    opcodes.insert(pair<string, string>("FLOV", "float \1 = \2;\n"));
-    opcodes.insert(pair<string, string>("BOOV", "bool \1 = \2;\n"));
+    opcodes.insert(pair<string, string>("INT", "int \1 = \2;\n"));
+    opcodes.insert(pair<string, string>("STRING", "char \1[] = \2;\n"));
+    opcodes.insert(pair<string, string>("CHAR", "char \1 = \2;\n"));
+    opcodes.insert(pair<string, string>("FLOAT", "float \1 = \2;\n"));
+    opcodes.insert(pair<string, string>("BOOL", "bool \1 = \2;\n"));
     //Console
-    opcodes.insert(pair<string, string>("COUT", "printf(\"\1\"\2);\n"));
-    opcodes.insert(pair<string, string>("CCIN", "fflush(stdin);\nscanf(\"\1\",\2);\n"));
+    opcodes.insert(pair<string, string>("COUT", "printf(\1 \2);\n"));
+    opcodes.insert(pair<string, string>("CCIN", "fflush(stdin);\nscanf(\1,\2);\n"));
     opcodes.insert(pair<string, string>("CGIN", "fflush(stdin);\ngetc(stdin);\n"));
     opcodes.insert(pair<string, string>("CTER", "exit(0);\n"));
     //Conditionals & loops
