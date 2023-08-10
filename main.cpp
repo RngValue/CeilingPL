@@ -64,7 +64,7 @@ void tokenization(string str) {
             if (str[i-1] == '\\') {
                 i++;
                 tokens[tokCount] += '\"';
-                goto getbackhere; //Please god forgive me for using goto... I seriously have no other way of fixing this
+                goto getbackhere; //Please god forgive me for using goto
             }
             tokens[tokCount] += '\"';
         } else {
