@@ -51,19 +51,16 @@ void tokenization(string str) {
         c = str[i];
         if (c == ' ') {
             tokCount++;
-            // cout << endl;
-        } else if (c == '\"' and str[i-1] != '\\') {
+        } else if (c == '\"') {
             i++;
             tokens[tokCount] += '\"';
             while (str[i] != '\"') {
                 tokens[tokCount] += str[i];
-                // cout << str[i];
                 i++;
             }
             tokens[tokCount] += '\"';
         } else {
             tokens[tokCount] += c;
-            // cout << c;
         }
     }
 }
@@ -108,19 +105,15 @@ int main(int argc, char* argv[]) {
             tokenization(line);
             lineNumber++;
             code = tokens[0];
-            //if (code == "start:" || code == "update:") {}
-            //else {outfile << "line" << lineNumber << ":" << endl;}
             if (code[code.length()-1] != ':') transform(code.begin(), code.end(), code.begin(), ::toupper);
             
             ///Checking opcodes and converting to C
             // Default functions
             if (code == "start:") {
                 outfile << opcodes["start:"];
-                //outfile << "line" << lineNumber << ":" << endl;
             }
             if (code == "update:") {
                 outfile << opcodes["update:"];
-                //outfile << "line" << lineNumber << ":" << endl;
                 updateExists = true;
             }
             //Console
