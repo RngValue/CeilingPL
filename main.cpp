@@ -65,7 +65,7 @@ void tokenization(string str) {
                     tokens[tokCount] += str[i];
                     i++;
                 }
-            }while (str[i-1] == '\\');
+            } while (str[i-1] == '\\');
             tokens[tokCount] += '\"';
         } else {
             tokenInQuotes = false;
