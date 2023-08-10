@@ -54,7 +54,6 @@ void tokenize_string( size_t FromToken, size_t ToToken, const std::string& Str, 
     const char* CStrj = Str.c_str();
 
     while ( *CStr ) {
-        // bypass spaces & delimiting chars
         while ( *CStr && Str_IsSeparator( *CStr ) ) { CStr++; }
         if ( !*CStr ) { return; }
         bool InsideQuotes = ( *CStr == '\"' );
@@ -64,20 +63,15 @@ void tokenize_string( size_t FromToken, size_t ToToken, const std::string& Str, 
         else {
             for ( CStrj = CStr; *CStrj && !Str_IsSeparator( *CStrj ); CStrj++ );
         }
-        // extract token
         if ( CStr != CStrj )
         {
             TokenNum++;
-            // store each token found
             if ( TokenNum >= FromToken )
             {
                 Components[ TokenNum-Offset ].assign( CStr, CStrj );
-                // if ( ShouldTrimSpaces ) { Str_TrimSpaces( &Components[ TokenNum-Offset ] ); }
-                // proceed to next token
                 if ( TokenNum >= ToToken ) { return; }
             }
             CStr = CStrj;
-            // exclude last " from token, handle EOL
             if ( *CStr ) { CStr++; }
         }
     }
@@ -92,7 +86,7 @@ bool replace(std::string& str, const std::string& from, const std::string& to) {
 }
 
 int main(int argc, char* argv[]) {
-    upt_dict(); //Loads a map dictionary from dict.h
+    upt_dict();
     if (argc < 2) {
         cout << "Please, use any of these arguments:" << endl;
         cout << "\"-o [.ceil file] [output file]\"\tCompiles your code to an executable file" << endl;
@@ -100,7 +94,8 @@ int main(int argc, char* argv[]) {
         cout << "\"-h [page]\"\t\t\tDisplays all the opcodes." << endl;
     }
     argument = argv[1];
-    if (argument == "-o"){ //THE ACTUAL COMPILER
+    ///THE ACTUAL COMPILER
+    if (argument == "-o"){
         std::ifstream myfile;
         std::ofstream outfile("output.c");
         myfile.open(argv[2]);
@@ -121,12 +116,10 @@ int main(int argc, char* argv[]) {
             tokenize_string(1, MAX_TOKENS-1, line, tokens);
             lineNumber++;
             code = tokens[1];
-            //cout << tokens[0] << " " << tokens[1] << " " << tokens[2] << endl;
             if (code == "start:" || code == "update:") {}
             else {outfile << "line" << lineNumber << ":" << endl;}
-
             if (code[code.length()-1] != ':') transform(code.begin(), code.end(), code.begin(), ::toupper);
-            //cout << code;
+            
             ///Checking opcodes and converting to C
             // Default functions
             if (code == "start:") {
@@ -311,7 +304,7 @@ int main(int argc, char* argv[]) {
         cout << "done" << endl;
     }else if (argument == "-v"){ //CHECK VERSION
         cout << CEILING_VERSION << endl;
-    }else if (argument == "-h"){ //HEEEEEEELP STEP BRO, I'M STUUUUCK
+    }else if (argument == "-h"){ //HELP
         print_dict((char)*argv[2]);
     } else {
         cout << "Please, use any of these arguments:" << endl;
