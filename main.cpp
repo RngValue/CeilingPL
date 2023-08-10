@@ -56,16 +56,16 @@ void tokenization(string str) {
             tokenInQuotes = true;
             i++;
             tokens[tokCount] += '\"';
-            getbackhere:
-            while (str[i] != '\"') {
-                tokens[tokCount] += str[i];
-                i++;
-            }
-            if (str[i-1] == '\\') {
-                i++;
-                tokens[tokCount] += '\"';
-                goto getbackhere; //Please god forgive me for using goto
-            }
+            do {
+                if (str[i-1] == '\\') {
+                    i++;
+                    tokens[tokCount] += '\"';
+                }
+                while (str[i] != '\"') {
+                    tokens[tokCount] += str[i];
+                    i++;
+                }
+            }while (str[i-1] == '\\');
             tokens[tokCount] += '\"';
         } else {
             tokenInQuotes = false;
