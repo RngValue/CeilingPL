@@ -260,7 +260,7 @@ int main(int argc, char* argv[]) {
                     for (int i = 1; i<tokens.size(); i++) {
                         if (tokens[i] != "") {
                             if (tokens[i] == "THEN" || tokens[i] == "then") {
-                                replace(ccode, "\3", opcodes["THEN"]);
+                                replace(ccode, "\4", opcodes["THEN"]);
                                 break;
                             } else if (tokens[i] == "IN" || tokens[i] == "in") {
                                 isInRange = true;
@@ -284,7 +284,7 @@ int main(int argc, char* argv[]) {
                     }
                     replace(ccode, "\1", ccodeArgs.str());
                     replace(ccode, "\2", ccodeArgsAdd.str());
-                    replace(ccode, "\4", ccodeArgsAddAdd.str());
+                    replace(ccode, "\3", ccodeArgsAddAdd.str());
                     isInRange = false;
                     ccodeArgs.str(string());
                     ccodeArgsAdd.str(string());
