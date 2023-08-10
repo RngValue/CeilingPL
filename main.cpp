@@ -22,12 +22,14 @@ int tokenCount = 0;
 int tokCount = 0;
 
 bool isInRange = false;
+bool isInEquel = false;
 bool updateExists = false;
 
 std::vector<string> tokens;
 
 std::stringstream ccodeArgs;
 std::stringstream ccodeArgsAdd;
+std::stringstream ccodeArgsAddAdd;
 std::stringstream sstm;
 std::stringstream systemCom;
 
@@ -104,7 +106,6 @@ int main(int argc, char* argv[]) {
             tokens.clear();
             tokens.resize(MAX_TOKENS);
             tokenization(line);
-            cout << tokens[0] << endl;
             lineNumber++;
             code = tokens[0];
             //if (code == "start:" || code == "update:") {}
@@ -263,21 +264,27 @@ int main(int argc, char* argv[]) {
                                 break;
                             } else if (tokens[i] == "IN" || tokens[i] == "in") {
                                 isInRange = true;
+                            } else if (tokens[i] == "=") {
+                                isInEquel = true;
                             } else {
                                 if (isInRange) {
                                     ccodeArgsAdd << " ";
                                     ccodeArgsAdd << tokens[i];
                                 } else {
-                                    ccodeArgs << " ";
-                                    ccodeArgs << tokens[i];
+                                    if (isInEquel){
+                                        ccodeArgsAddAdd << " ";
+                                        ccodeArgsAddAdd << tokens[i];
+                                    } else {
+                                        ccodeArgs << " ";
+                                        ccodeArgs << tokens[i];
+                                    }
                                 }
                             }
                         }
                     }
                     replace(ccode, "\1", ccodeArgs.str());
-                    replace(ccode, "\1", ccodeArgs.str());
-                    replace(ccode, "\1", ccodeArgs.str());
                     replace(ccode, "\2", ccodeArgsAdd.str());
+                    replace(ccode, "\4", ccodeArgsAddAdd.str());
                     isInRange = false;
                     ccodeArgs.str(string());
                     ccodeArgsAdd.str(string());
