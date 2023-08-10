@@ -31,3 +31,6 @@
   <li>Adding Functions</li>
 </ul>
 <p><sub>(None of the above is guaranteed to happen tho...)</sub></p>
+
+<h2>Links related to the github repo</h2>
+<p><a href=".github/ISSUE_TEMPLATE/bug_report.md"></a></p>
