@@ -33,4 +33,6 @@
 <p><sub>(None of the above is guaranteed to happen tho...)</sub></p>
 
 <h2>Links related to the github repo</h2>
-<p><a href=".github/ISSUE_TEMPLATE/bug_report.md"></a></p>
+<h3><a href="LICENSE">License</a></h3>
+<h3><a href=".github/ISSUE_TEMPLATE/bug_report.md">Bug reports</a></h3>
+<h3><a href=".github/ISSUE_TEMPLATE/feature_request.md">Feature requests</a></h3>
