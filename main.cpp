@@ -24,6 +24,7 @@ int tokCount = 0;
 bool isInRange = false;
 bool isInEquel = false;
 bool updateExists = false;
+bool tokenInQuotes = false;
 
 std::vector<string> tokens;
 
@@ -52,14 +53,22 @@ void tokenization(string str) {
         if (c == ' ') {
             tokCount++;
         } else if (c == '\"') {
+            tokenInQuotes = true;
             i++;
             tokens[tokCount] += '\"';
+            getbackhere:
             while (str[i] != '\"') {
                 tokens[tokCount] += str[i];
                 i++;
             }
+            if (str[i-1] == '\\') {
+                i++;
+                tokens[tokCount] += '\"';
+                goto getbackhere; //Please god forgive me for using goto... I seriously have no other way of fixing this
+            }
             tokens[tokCount] += '\"';
         } else {
+            tokenInQuotes = false;
             tokens[tokCount] += c;
         }
     }
