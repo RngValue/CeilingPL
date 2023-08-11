@@ -16,7 +16,7 @@
 <h3>How to quit Vim:</h3>
 <p>Just in case...</p>
 <pre><code>:q!</code></pre>
-<p>It's not related to Ceiling, just wanted to let you know :3.</p>
+<p>It's not related to Ceiling, just wanted to let you know. :3</p>
 
 <h2>Future plans so far</h2>
 <h3>Some of the things I have in mind include:</h3>
