@@ -19,7 +19,6 @@ const int MAX_TOKENS = 10;
 const char CEILING_VERSION[] = "Ceiling Programming Language v0.1-DEV1";
 
 int lineNumber = 0;
-int tokenCount = 0;
 int tokCount = 0;
 
 bool isInRange = false;
@@ -31,7 +30,6 @@ std::vector<string> tokens;
 std::stringstream ccodeArgs;
 std::stringstream ccodeArgsAdd;
 std::stringstream ccodeArgsAddAdd;
-std::stringstream sstm;
 std::stringstream systemCom;
 
 std::ifstream myfile;
@@ -42,7 +40,6 @@ string code;
 string ccode;
 string line;
 string argument;
-string systemComFail;
 
 const char Separators[] = { ' ', 9 };
 char c;
@@ -80,6 +77,41 @@ void replace(std::string& subject, const std::string& search, const std::string&
     }
 }
 
+void colonize_tokens(int index, bool whichone) {
+    for (int i = index; i<tokens.size(); i++) {
+        if (tokens[i] != "" and whichone) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
+        if (tokens[i] != "" and whichone == false) ccodeArgs << tokens[i];
+    }
+}
+
+void thenify_tokens(int index) {
+    for (int i = 1; i<tokens.size(); i++) {
+        if (tokens[i] != "") {
+            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; }
+            else { ccodeArgs << " "; ccodeArgs << tokens[i]; }
+        }
+    }
+}
+
+void thenify_tokens_complex(int index) {
+    for (int i = 1; i<tokens.size(); i++) {
+        if (tokens[i] != "" and (tokens[i] == "THEN" || tokens[i] == "then")) {
+            replace(ccode, "\4", opcodes["THEN"]);
+            break;
+        } else if (tokens[i] != "" and (tokens[i] == "IN" || tokens[i] == "in")) {
+            isInRange = true;
+        } else if (tokens[i] != "" and (tokens[i] == "=")) {
+            isInEquel = true;
+        } else if (tokens[i] != "" and isInRange) {
+            ccodeArgsAdd << " ";
+            ccodeArgsAdd << tokens[i];
+        } else {
+            if (isInEquel){ ccodeArgsAddAdd << " "; ccodeArgsAddAdd << tokens[i]; }
+            else { ccodeArgs << " "; ccodeArgs << tokens[i]; }
+        }
+    }
+}
+
 void ceil_to_c() {
     replace(line, "    ", "");
     tokens.clear();
@@ -97,166 +129,100 @@ void ceil_to_c() {
     if (code == "update:") {
         outfile << opcodes["update:"];
         updateExists = true;
-    } else
     //Console
-    if (code == "COUT") {
+    } else if (code == "COUT") {
         ccode = opcodes["COUT"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == ""){
             replace(ccode, "\2", "");
-        }else{
-            for (int i = 2; i<tokens.size(); i++) {
-                if (tokens[i] != ""){
-                    ccodeArgs << ", ";
-                    ccodeArgs << tokens[i];
-                }
-            }
+        } else {
+            colonize_tokens(2, true);
             replace(ccode, "\2", ccodeArgs.str());
             ccodeArgs.str(string());
         }
         outfile << ccode;
-    } else
-    if (code == "CCIN") {
+    } else if (code == "CCIN") {
         ccode = opcodes["CCIN"];
         replace(ccode, "\1", tokens[1]);
         replace(ccode, "\2", tokens[2]);
         outfile << ccode;
-    } else
-    if (code == "CGIN") {
+    } else if (code == "CGIN") {
         ccode = opcodes["CGIN"];
         outfile << ccode;
-    } else
-    if (code == "CTER") {
+    } else if (code == "CTER") {
         ccode = opcodes["CTER"];
         outfile << ccode;
-    } else
     //Variables
-    if (code == "INT") {
+    } else if (code == "INT") {
         ccode = opcodes["INT"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            for (int i = 3; i<tokens.size(); i++)
-                if (tokens[i] != "")
-                    ccodeArgs << tokens[i];
+            colonize_tokens(3, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
-    } else
-    if (code == "STRING") {
+    } else if (code == "STRING") {
         ccode = opcodes["STRING"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            for (int i = 3; i<tokens.size(); i++)
-                if (tokens[i] != "")
-                    ccodeArgs << tokens[i];
+            colonize_tokens(3, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
-    } else
-    if (code == "CHAR") {
+    } else if (code == "CHAR") {
         ccode = opcodes["CHAR"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            for (int i = 3; i<tokens.size(); i++)
-                if (tokens[i] != "")
-                    ccodeArgs << tokens[i];
+            colonize_tokens(3, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
-    } else
-    if (code == "FLOAT") {
+    } else if (code == "FLOAT") {
         ccode = opcodes["FLOAT"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            for (int i = 3; i<tokens.size(); i++)
-                if (tokens[i] != "")
-                    ccodeArgs << tokens[i];
+            colonize_tokens(3, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
-    } else
-    if (code == "BOOL") {
+    } else if (code == "BOOL") {
         ccode = opcodes["BOOL"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            for (int i = 3; i<tokens.size(); i++)
-                if (tokens[i] != "")
-                    ccodeArgs << tokens[i];
+            colonize_tokens(3, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
-    } else
     //Conditions and loops
-    if (code == "IF") {
+    } else if (code == "IF") {
         ccode = opcodes["IF"];
         if (tokens[1] == ""){
             replace(ccode, "\1", "");
         }else{
-            for (int i = 1; i<tokens.size(); i++) {
-                if (tokens[i] != "") {
-                    if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; } else {
-                        ccodeArgs << " ";
-                        ccodeArgs << tokens[i];
-                    }
-                }
-            }
+            thenify_tokens(1);
             replace(ccode, "\1", ccodeArgs.str());
             ccodeArgs.str(string());
         }
         outfile << ccode;
-    } else
-    if (code == "ELIF") {
+    } else if (code == "ELIF") {
         ccode = opcodes["ELIF"];
         if (tokens[1] == ""){
             replace(ccode, "\1", "");
         }else{
-            for (int i = 1; i<tokens.size(); i++) {
-                if (tokens[i] != "") {
-                    if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; } else {
-                        ccodeArgs << " ";
-                        ccodeArgs << tokens[i];
-                    }
-                }
-            }
+            thenify_tokens(1);
             replace(ccode, "\1", ccodeArgs.str());
             ccodeArgs.str(string());
         }
         outfile << ccode;
-    } else
-    if (code == "ELSE") {
+    } else if (code == "ELSE") {
         ccode = opcodes["ELSE"];
         outfile << ccode;
-    } else
-    if (code == "FOR") {
+    } else if (code == "FOR") {
         ccode = opcodes["FOR"];
         if (tokens[1] == ""){
             replace(ccode, "\1", "");
         }else{
-            for (int i = 1; i<tokens.size(); i++) {
-                if (tokens[i] != "") {
-                    if (tokens[i] == "THEN" || tokens[i] == "then") {
-                        replace(ccode, "\4", opcodes["THEN"]);
-                        break;
-                    } else if (tokens[i] == "IN" || tokens[i] == "in") {
-                        isInRange = true;
-                    } else if (tokens[i] == "=") {
-                        isInEquel = true;
-                    } else {
-                        if (isInRange) {
-                            ccodeArgsAdd << " ";
-                            ccodeArgsAdd << tokens[i];
-                        } else {
-                            if (isInEquel){
-                                ccodeArgsAddAdd << " ";
-                                ccodeArgsAddAdd << tokens[i];
-                            } else {
-                                ccodeArgs << " ";
-                                ccodeArgs << tokens[i];
-                            }
-                        }
-                    }
-                }
-            }
+            thenify_tokens_complex(1);
             replace(ccode, "\1", ccodeArgs.str());
             replace(ccode, "\2", ccodeArgsAdd.str());
             replace(ccode, "\3", ccodeArgsAddAdd.str());
@@ -265,43 +231,30 @@ void ceil_to_c() {
             ccodeArgsAdd.str(string());
         }
         outfile << ccode;
-    } else
-    if (code == "WHILE") {
+    } else if (code == "WHILE") {
         ccode = opcodes["WHILE"];
         if (tokens[1] == ""){
             replace(ccode, "\1", "");
         }else{
-            for (int i = 1; i<tokens.size(); i++) {
-                if (tokens[i] != "") {
-                    if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; } else {
-                        ccodeArgs << " ";
-                        ccodeArgs << tokens[i];
-                    }
-                }
-            }
+            thenify_tokens(1);
             replace(ccode, "\1", ccodeArgs.str());
             ccodeArgs.str(string());
         }
         outfile << ccode;
-    } else
-    if (code == "BREAK") {
+    } else if (code == "BREAK") {
         ccode = opcodes["BREAK"];
         outfile << ccode;
-    } else
-    if (code == "END") {
+    } else if (code == "END") {
         ccode = opcodes["END"];
         outfile << ccode;
-    } else
     //handeling nonexistant opcodes, comments and variable manipulation
-    if (code[0] == '/' and code[1] == '/'){} else {
+    } else if (code[0] != '/' and code[1] != '/') {
         if (tokens[1] != "=" and tokens[1] != "+=" and tokens[1] != "-=" and tokens[1] != "*=" and tokens[1] != "/=") {
             std::stringstream errMessage;
             errMessage << "\"" << code << "\" at line " << lineNumber << " doesn't exist.";
             throw std::invalid_argument(errMessage.str().c_str());
         } else {
-            for (int i = 0; i<tokens.size(); i++)
-                if (tokens[i] != "")
-                    outfile << tokens[i];
+            for (int i = 0; i<tokens.size(); i++) if (tokens[i] != "") outfile << tokens[i];
             outfile << ";\n";
         }
     }
@@ -330,10 +283,7 @@ int main(int argc, char* argv[]) {
         outfile << opcodes["libs"];
         cout << "your.ceil file => output.c: ";
 
-        while(getline(myfile, line)) {
-            lineNumber++;
-            ceil_to_c();
-        }
+        while(getline(myfile, line)) { lineNumber++; ceil_to_c(); }
 
         if(updateExists) { outfile << "}}"; } else { outfile << "}"; }
         outfile.close();
