@@ -265,6 +265,7 @@ int main(int argc, char* argv[]) {
     upt_dict();
     if (argc < 2) {
         show_help();
+        return 0;
     }
     argument = argv[1];
     ///THE ACTUAL COMPILER
@@ -296,6 +297,7 @@ int main(int argc, char* argv[]) {
         print_dict((char)*argv[2]);
     } else {
         show_help();
+        return 0;
     }
     return 0;
 }
