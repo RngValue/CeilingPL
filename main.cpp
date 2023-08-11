@@ -321,11 +321,18 @@ int main(int argc, char* argv[]) {
                 ccode = opcodes["END"];
                 outfile << ccode;
             } else
-            //handeling nonexistant codes and comments
+            //handeling nonexistant opcodes, comments and variable manipulation
             if (code[0] == '/' and code[1] == '/'){} else {
-                std::stringstream errMessage;
-                errMessage << "\"" << code << "\" at line " << lineNumber << " doesn't exist.";
-                throw std::invalid_argument(errMessage.str().c_str());
+                if (tokens[1] != "=" and tokens[1] != "+=" and tokens[1] != "-=" and tokens[1] != "*=" and tokens[1] != "/=") {
+                    std::stringstream errMessage;
+                    errMessage << "\"" << code << "\" at line " << lineNumber << " doesn't exist.";
+                    throw std::invalid_argument(errMessage.str().c_str());
+                } else {
+                    for (int i = 0; i<tokens.size(); i++)
+                        if (tokens[i] != "")
+                            outfile << tokens[i];
+                    outfile << ";\n";
+                }
             }
         }
         if(updateExists) { outfile << "}}"; } else { outfile << "}"; }
