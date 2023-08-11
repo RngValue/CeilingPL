@@ -45,11 +45,11 @@ void print_dict(char page){
             cout << "start:" << "\t\t\t\t" << "Think of it as the \"main\" function." << endl;
             cout << "update:" << "\t\t\t\t" << "Loops code that belongs to it." << endl;
             cout << "[variables]" << endl;
-            cout << "INTV [name] [value]" << "\t\t" << "Declares an integer." << endl;
-            cout << "STRV [name] [value]" << "\t\t" << "Declares a string. (Which is just an array of characters)" << endl;
-            cout << "CHRV [name] [value]" << "\t\t" << "Declares a character." << endl;
-            cout << "FLOV [name] [value]" << "\t\t" << "Declares a float." << endl;
-            cout << "BOOV [name] [value]" << "\t\t" << "Declares a boolean." << endl;
+            cout << "INT [name] [value]" << "\t\t" << "Declares an integer." << endl;
+            cout << "STRING [name] [value]" << "\t\t" << "Declares a string. (Which is just an array of characters)" << endl;
+            cout << "CHAR [name] [value]" << "\t\t" << "Declares a character." << endl;
+            cout << "FLOAT [name] [value]" << "\t\t" << "Declares a float." << endl;
+            cout << "BOOL [name] [value]" << "\t\t" << "Declares a boolean." << endl;
             break;
         case '2':
             cout << "[console]" << endl;
@@ -65,6 +65,7 @@ void print_dict(char page){
             cout << "ELSE" << "\t\t\t\t" << "Else statement." << endl;
             cout << "FOR [itirator] IN [range] THEN" << "\t" << "For loop." << endl;
             cout << "WHILE [condition] THEN" << "\t\t" << "While loop." << endl;
+            cout << "BREAK" << "\t\t\t\t" << "Breaks out of a loop." << endl;
             cout << "END" << "\t\t\t\t" << "Marks an end of a condition/loop." << endl;
             break;
         default:
