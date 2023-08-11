@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <stdexcept>
 
 #include "includes/dict.cpp"
 
@@ -118,13 +119,14 @@ int main(int argc, char* argv[]) {
             
             ///Checking opcodes and converting to C
             // Default functions
+            if (code == "") {} else
             if (code == "start:") {
                 outfile << opcodes["start:"];
-            }
+            } else
             if (code == "update:") {
                 outfile << opcodes["update:"];
                 updateExists = true;
-            }
+            } else
             //Console
             if (code == "COUT") {
                 ccode = opcodes["COUT"];
@@ -142,21 +144,21 @@ int main(int argc, char* argv[]) {
                     ccodeArgs.str(string());
                 }
                 outfile << ccode;
-            }
+            } else
             if (code == "CCIN") {
                 ccode = opcodes["CCIN"];
                 replace(ccode, "\1", tokens[1]);
                 replace(ccode, "\2", tokens[2]);
                 outfile << ccode;
-            }
+            } else
             if (code == "CGIN") {
                 ccode = opcodes["CGIN"];
                 outfile << ccode;
-            }
+            } else
             if (code == "CTER") {
                 ccode = opcodes["CTER"];
                 outfile << ccode;
-            }
+            } else
             //Variables
             if (code == "INT") {
                 ccode = opcodes["INT"];
@@ -168,7 +170,7 @@ int main(int argc, char* argv[]) {
                     replace(ccode, "\2", ccodeArgs.str());
                 ccodeArgs.str(string());
                 outfile << ccode;
-            }
+            } else
             if (code == "STRING") {
                 ccode = opcodes["STRING"];
                 replace(ccode, "\1", tokens[1]);
@@ -179,7 +181,7 @@ int main(int argc, char* argv[]) {
                     replace(ccode, "\2", ccodeArgs.str());
                 ccodeArgs.str(string());
                 outfile << ccode;
-            }
+            } else
             if (code == "CHAR") {
                 ccode = opcodes["CHAR"];
                 replace(ccode, "\1", tokens[1]);
@@ -190,7 +192,7 @@ int main(int argc, char* argv[]) {
                     replace(ccode, "\2", ccodeArgs.str());
                 ccodeArgs.str(string());
                 outfile << ccode;
-            }
+            } else
             if (code == "FLOAT") {
                 ccode = opcodes["FLOAT"];
                 replace(ccode, "\1", tokens[1]);
@@ -201,7 +203,7 @@ int main(int argc, char* argv[]) {
                     replace(ccode, "\2", ccodeArgs.str());
                 ccodeArgs.str(string());
                 outfile << ccode;
-            }
+            } else
             if (code == "BOOL") {
                 ccode = opcodes["BOOL"];
                 replace(ccode, "\1", tokens[1]);
@@ -212,7 +214,7 @@ int main(int argc, char* argv[]) {
                     replace(ccode, "\2", ccodeArgs.str());
                 ccodeArgs.str(string());
                 outfile << ccode;
-            }
+            } else
             //Conditions and loops
             if (code == "IF") {
                 ccode = opcodes["IF"];
@@ -231,7 +233,7 @@ int main(int argc, char* argv[]) {
                     ccodeArgs.str(string());
                 }
                 outfile << ccode;
-            }
+            } else
             if (code == "ELIF") {
                 ccode = opcodes["ELIF"];
                 if (tokens[1] == ""){
@@ -249,11 +251,11 @@ int main(int argc, char* argv[]) {
                     ccodeArgs.str(string());
                 }
                 outfile << ccode;
-            }
+            } else
             if (code == "ELSE") {
                 ccode = opcodes["ELSE"];
                 outfile << ccode;
-            }
+            } else
             if (code == "FOR") {
                 ccode = opcodes["FOR"];
                 if (tokens[1] == ""){
@@ -292,7 +294,7 @@ int main(int argc, char* argv[]) {
                     ccodeArgsAdd.str(string());
                 }
                 outfile << ccode;
-            }
+            } else
             if (code == "WHILE") {
                 ccode = opcodes["WHILE"];
                 if (tokens[1] == ""){
@@ -310,14 +312,20 @@ int main(int argc, char* argv[]) {
                     ccodeArgs.str(string());
                 }
                 outfile << ccode;
-            }
+            } else
             if (code == "BREAK") {
                 ccode = opcodes["BREAK"];
                 outfile << ccode;
-            }
+            } else
             if (code == "END") {
                 ccode = opcodes["END"];
                 outfile << ccode;
+            } else
+            //handeling nonexistant codes and comments
+            if (code[0] == '/' and code[1] == '/'){} else {
+                std::stringstream errMessage;
+                errMessage << "\"" << code << "\" at line " << lineNumber << " doesn't exist.";
+                throw std::invalid_argument(errMessage.str().c_str());
             }
         }
         if(updateExists) { outfile << "}}"; } else { outfile << "}"; }
