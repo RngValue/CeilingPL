@@ -107,7 +107,7 @@ void thenify_tokens_complex(int index) {
             ccodeArgsAdd << " ";
             ccodeArgsAdd << tokens[i];
         } else {
-            if (isInEquel){ ccodeArgsAddAdd << " "; ccodeArgsAddAdd << tokens[i]; }
+            if (isInEquel) { ccodeArgsAddAdd << " "; ccodeArgsAddAdd << tokens[i]; }
             else { ccodeArgs << " "; ccodeArgs << tokens[i]; }
         }
     }
