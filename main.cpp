@@ -8,6 +8,7 @@
 #include <stdexcept>
 
 #include "includes/dict.cpp"
+#include "includes/doc.cpp"
 
 using std::cout;
 using std::string;
@@ -263,10 +264,7 @@ void ceil_to_c() {
 int main(int argc, char* argv[]) {
     upt_dict();
     if (argc < 2) {
-        cout << "Please, use any of these arguments:" << endl;
-        cout << "\"-o [.ceil file] [output file]\"\tCompiles your code to an executable file" << endl;
-        cout << "\"-v\"\t\t\t\tDisplays the Ceiling version installed." << endl;
-        cout << "\"-h [page]\"\t\t\tDisplays all the opcodes." << endl;
+        show_help();
     }
     argument = argv[1];
     ///THE ACTUAL COMPILER
@@ -287,20 +285,17 @@ int main(int argc, char* argv[]) {
 
         if(updateExists) { outfile << "}}"; } else { outfile << "}"; }
         outfile.close();
-        cout << "done" << endl;
+        cout << "done\n";
         cout << "output.c => your program: ";
         systemCom << "gcc output.c -o " << argv[3];
         system(systemCom.str().c_str());
-        cout << "done" << endl;
+        cout << "done\n";
     }else if (argument == "-v"){ //CHECK VERSION
-        cout << CEILING_VERSION << endl;
+        cout << CEILING_VERSION << "\n";
     }else if (argument == "-h"){ //HELP
         print_dict((char)*argv[2]);
     } else {
-        cout << "Please, use any of these arguments:" << endl;
-        cout << "\"-o [.ceil file] [output file]\"\tCompiles your code to an executable file" << endl;
-        cout << "\"-v\"\t\t\t\tDisplays the Ceiling version installed." << endl;
-        cout << "\"-h [page]\"\t\t\tDisplays all the opcodes." << endl;
+        show_help();
     }
     return 0;
 }

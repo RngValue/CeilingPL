@@ -1,9 +1,8 @@
 #include <iostream>
 #include <map>
 
-using std::cout;
+
 using std::string;
-using std::endl;
 using std::pair;
 
 std::map<string, string> opcodes;
@@ -33,43 +32,4 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("BREAK", "break;\n"));
     opcodes.insert(pair<string, string>("THEN", ") {\n"));
     opcodes.insert(pair<string, string>("END", "}\n"));
-}
-
-//Documentation
-const int MAX_HELP_PAGES = 3;
-void print_dict(char page){
-    cout << "======================PAGE " << page << "/" << MAX_HELP_PAGES << "=======================" << endl;
-    switch(page){
-        case '1':
-            cout << "[default functions]" << endl;
-            cout << "start:" << "\t\t\t\t" << "Think of it as the \"main\" function." << endl;
-            cout << "update:" << "\t\t\t\t" << "Loops code that belongs to it." << endl;
-            cout << "[variables]" << endl;
-            cout << "INT [name] [value]" << "\t\t" << "Declares an integer." << endl;
-            cout << "STRING [name] [value]" << "\t\t" << "Declares a string. (Which is just an array of characters)" << endl;
-            cout << "CHAR [name] [value]" << "\t\t" << "Declares a character." << endl;
-            cout << "FLOAT [name] [value]" << "\t\t" << "Declares a float." << endl;
-            cout << "BOOL [name] [value]" << "\t\t" << "Declares a boolean." << endl;
-            break;
-        case '2':
-            cout << "[console]" << endl;
-            cout << "COUT [string] [variable/value]" << "\t" << "Outputs a string into the console. Allows C-like formating." << endl;
-            cout << "CCIN [string] [variable]" << "\t" << "Checks user input and stores it into a variable. (Just like scanf in C)" << endl;
-            cout << "CGIN" << "\t\t\t\t" << "Waits for user to press enter." << endl;
-            cout << "CTER" << "\t\t\t\t" << "Terminates program." << endl;
-            break;
-        case '3':
-            cout << "[conditions & loops]" << endl;
-            cout << "IF [condition] THEN" << "\t\t" << "If statement." << endl;
-            cout << "ELIF [condition] THEN" << "\t\t" << "Else if statement." << endl;
-            cout << "ELSE" << "\t\t\t\t" << "Else statement." << endl;
-            cout << "FOR [itirator] IN [range] THEN" << "\t" << "For loop." << endl;
-            cout << "WHILE [condition] THEN" << "\t\t" << "While loop." << endl;
-            cout << "BREAK" << "\t\t\t\t" << "Breaks out of a loop." << endl;
-            cout << "END" << "\t\t\t\t" << "Marks an end of a condition/loop." << endl;
-            break;
-        default:
-            cout << "Page " << page << " doesn't exist.\n";
-            break;
-    }
 }
