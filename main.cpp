@@ -247,6 +247,19 @@ void ceil_to_c() {
     } else if (code == "END") {
         ccode = opcodes["END"];
         outfile << ccode;
+    } else if (code == "DO") {
+        ccode = opcodes["DO"];
+        outfile << ccode;
+    } else if (code == "WHEN") {
+        ccode = opcodes["WHEN"];
+        if (tokens[1] == ""){
+            replace(ccode, "\1", "");
+        }else{
+            thenify_tokens(1);
+            replace(ccode, "\1", ccodeArgs.str());
+            ccodeArgs.str(string());
+        }
+        outfile << ccode;
     //handeling nonexistant opcodes, comments and variable manipulation
     } else if (code[0] != '/' and code[1] != '/') {
         if (tokens[1] != "=" and tokens[1] != "+=" and tokens[1] != "-=" and tokens[1] != "*=" and tokens[1] != "/=") {
