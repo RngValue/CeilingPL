@@ -84,20 +84,20 @@ void colonize_tokens(int index, bool whichone) {
         if (tokens[i] != "" and whichone == false) ccodeArgs << tokens[i];
     }
 }
-
+//Thenify simple
 void thenify_tokens(int index) {
     for (int i = index; i<tokens.size(); i++) {
         if (tokens[i] != "" and (tokens[i] == "THEN" || tokens[i] == "then")) { ccodeArgs << opcodes["THEN"]; }
         else if (tokens[i] != "") { ccodeArgs << " "; ccodeArgs << tokens[i]; }
     }
 }
-
-void thenify_tokens_complex(int index) {
+//Thenify complex
+void thenify_tokens(int index, string separatorUppercase, string separatorLowercase) {
     for (int i = index; i<tokens.size(); i++) {
         if (tokens[i] != "" and (tokens[i] == "THEN" || tokens[i] == "then")) {
             replace(ccode, "\4", opcodes["THEN"]);
             break;
-        } else if (tokens[i] != "" and (tokens[i] == "IN" || tokens[i] == "in")) {
+        } else if (tokens[i] != "" and (tokens[i] == separatorUppercase || tokens[i] == separatorLowercase)) {
             isInRange = true;
         } else if (tokens[i] != "" and (tokens[i] == "=")) {
             isInEquel = true;
@@ -221,13 +221,14 @@ void ceil_to_c() {
         if (tokens[1] == ""){
             replace(ccode, "\1", "");
         }else{
-            thenify_tokens_complex(1);
+            thenify_tokens(1, "IN", "in");
             replace(ccode, "\1", ccodeArgs.str());
             replace(ccode, "\2", ccodeArgsAdd.str());
             replace(ccode, "\3", ccodeArgsAddAdd.str());
             isInRange = false;
             ccodeArgs.str(string());
             ccodeArgsAdd.str(string());
+            ccodeArgsAddAdd.str(string());
         }
         outfile << ccode;
     } else if (code == "WHILE") {
