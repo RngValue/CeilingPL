@@ -42,6 +42,9 @@ void print_dict(char page){
             cout << "WHILE [condition] THEN" << "\t\t" << "While loop.\n";
             cout << "BREAK" << "\t\t\t\t" << "Breaks out of a loop.\n";
             cout << "END" << "\t\t\t\t" << "Marks an end of a condition/loop.\n";
+            cout << "DO" << "\n";
+            cout << "   [code]" << "\t\t\t" << "Do while loop.\n";
+            cout << "WHEN [condition]" << "\n";
             break;
         default:
             cout << "Page " << page << " doesn't exist.\n";

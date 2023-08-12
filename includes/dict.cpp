@@ -32,4 +32,6 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("BREAK", "break;\n"));
     opcodes.insert(pair<string, string>("THEN", ") {\n"));
     opcodes.insert(pair<string, string>("END", "}\n"));
+    opcodes.insert(pair<string, string>("DO", "DO {\n"));
+    opcodes.insert(pair<string, string>("WHEN", "while (\1)\n"));
 }
