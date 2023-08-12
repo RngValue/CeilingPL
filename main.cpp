@@ -86,16 +86,14 @@ void colonize_tokens(int index, bool whichone) {
 }
 
 void thenify_tokens(int index) {
-    for (int i = 1; i<tokens.size(); i++) {
-        if (tokens[i] != "") {
-            if (tokens[i] == "THEN" || tokens[i] == "then") { ccodeArgs << opcodes["THEN"]; }
-            else { ccodeArgs << " "; ccodeArgs << tokens[i]; }
-        }
+    for (int i = index; i<tokens.size(); i++) {
+        if (tokens[i] != "" and (tokens[i] == "THEN" || tokens[i] == "then")) { ccodeArgs << opcodes["THEN"]; }
+        else if (tokens[i] != "") { ccodeArgs << " "; ccodeArgs << tokens[i]; }
     }
 }
 
 void thenify_tokens_complex(int index) {
-    for (int i = 1; i<tokens.size(); i++) {
+    for (int i = index; i<tokens.size(); i++) {
         if (tokens[i] != "" and (tokens[i] == "THEN" || tokens[i] == "then")) {
             replace(ccode, "\4", opcodes["THEN"]);
             break;
@@ -106,10 +104,10 @@ void thenify_tokens_complex(int index) {
         } else if (tokens[i] != "" and isInRange) {
             ccodeArgsAdd << " ";
             ccodeArgsAdd << tokens[i];
-        } else {
-            if (isInEquel) { ccodeArgsAddAdd << " "; ccodeArgsAddAdd << tokens[i]; }
-            else { ccodeArgs << " "; ccodeArgs << tokens[i]; }
-        }
+        } else if (isInEquel) {
+            ccodeArgsAddAdd << " ";
+            ccodeArgsAddAdd << tokens[i];
+        } else { ccodeArgs << " "; ccodeArgs << tokens[i]; }
     }
 }
 
