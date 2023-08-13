@@ -303,7 +303,7 @@ int main(int argc, char* argv[]) {
 
         while(getline(myfile, line)) { lineNumber++; ceil_to_c(); }
 
-        if(updateExists) { outfile << "}}"; } else { outfile << "}"; }
+        if(updateExists) { outfile << "}}"; } else { outfile << "return 0;\n}"; }
         outfile.close();
         cout << "done\n";
         cout << "output.c => your program: ";

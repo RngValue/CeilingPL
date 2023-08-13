@@ -11,7 +11,7 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("libs", "#include <stdio.h>\n#include <stdbool.h>\n#include <stdlib.h>\nint update();\n"));
     //Default functions
     opcodes.insert(pair<string, string>("start:", "int main(void) {\n"));
-    opcodes.insert(pair<string, string>("update:", "update();\n}\n\nint update() {\nwhile(true) {\n"));
+    opcodes.insert(pair<string, string>("update:", "update();\nreturn 0;\n}\n\nint update() {\nwhile(true) {\n"));
     //Variables
     opcodes.insert(pair<string, string>("INT", "int \1 = \2;\n"));
     opcodes.insert(pair<string, string>("STRING", "char \1[] = \2;\n"));
