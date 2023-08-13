@@ -97,6 +97,7 @@ void colonize_tokens(int index, bool condOne, bool condTwo) {
         }
         if (tokens[i] != "" and condOne and condTwo) {
             ccodeArgs << tokens[i];
+            if (tokens[i+1] == "TO" or tokens[i+1] == "to") break;
             if (i < tokCount) ccodeArgs << ", ";
         }
     }
@@ -312,6 +313,15 @@ void ceil_to_c() {
         replace(ccode, "\2", ccodeArgs.str());
         outfile << ccode;
         ccodeArgs.str(string());
+    } else if (code == "CALLTO") {
+        ccode = opcodes["CALLTO"];
+        replace(ccode, "\1", tokens[1]);
+        colonize_tokens(2, true, true);
+        replace(ccode, "\2", ccodeArgs.str());
+        replace(ccode, "\3", tokens[tokCount]);
+        outfile << ccode;
+        ccodeArgs.str(string());
+        ccodeArgsAdd.str(string());
     }
     //handeling nonexistant opcodes, comments, function creation and variable manipulation
     else if (code[0] != '/' and code[1] != '/') {
