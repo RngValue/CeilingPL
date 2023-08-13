@@ -88,6 +88,7 @@ void colonize_tokens(int index, bool whichone) {
         if (tokens[i] != "" and whichone == false) ccodeArgs << tokens[i];
     }
 }
+
 //Thenify simple
 void thenify_tokens(int index) {
     for (int i = index; i<tokens.size(); i++) {
@@ -95,6 +96,7 @@ void thenify_tokens(int index) {
         else if (tokens[i] != "") { ccodeArgs << " "; ccodeArgs << tokens[i]; }
     }
 }
+
 //Thenify complex
 void thenify_tokens(int index, string separatorUppercase, string separatorLowercase) {
     for (int i = index; i<tokens.size(); i++) {
@@ -286,8 +288,7 @@ int main(int argc, char* argv[]) {
         return 0;
     }
     argument = argv[1];
-    ///THE ACTUAL COMPILER
-    if (argument == "-o"){
+    if (argument == "-o"){ //Compile code
         myfile.open(argv[2]);
         if(myfile.fail()) {
             perror("Couldn't open the file");
