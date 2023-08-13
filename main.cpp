@@ -16,7 +16,6 @@ using std::endl;
 
 //using std::cout;
 
-const int MAX_TOKENS = 10;
 const char CEILING_VERSION[] = "Ceiling Programming Language v0.1-DEV1";
 
 int lineNumber = 0;
@@ -25,6 +24,7 @@ int tokCount = 0;
 bool isInRange = false;
 bool isInEquel = false;
 bool updateExists = false;
+bool functionExists = false;
 
 std::vector<string> tokens;
 
@@ -82,16 +82,29 @@ void replace(std::string& subject, const std::string& search, const std::string&
 }
 
 //Colonize function (either separate tokens by colons, or don't, and add to a string)
-void colonize_tokens(int index, bool whichone) {
-    for (int i = index; i<tokens.size(); i++) {
-        if (tokens[i] != "" and whichone) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
-        if (tokens[i] != "" and whichone == false) ccodeArgs << tokens[i];
+void colonize_tokens(int index, bool condOne, bool condTwo) {
+    for (int i = index; i<tokCount+1; i++) {
+        if (tokens[i] != "" and condOne and condTwo == false) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
+        if (tokens[i] != "" and condOne == false and condTwo == false) {
+            ccodeArgs << tokens[i];
+            if (i < tokCount) ccodeArgs << " ";
+        }
+        if (tokens[i] != "" and condOne == false and condTwo) {
+            transform(tokens[i].begin(), tokens[i].end(), tokens[i].begin(), ::tolower);
+            ccodeArgs << tokens[i] << " " << tokens[i+1];
+            if (i < tokCount-1) ccodeArgs << ", ";
+            i++;
+        }
+        if (tokens[i] != "" and condOne and condTwo) {
+            ccodeArgs << tokens[i];
+            if (i < tokCount) ccodeArgs << ", ";
+        }
     }
 }
 
 //Thenify simple
 void thenify_tokens(int index) {
-    for (int i = index; i<tokens.size(); i++) {
+    for (int i = index; i<tokCount+1; i++) {
         if (tokens[i] != "" and (tokens[i] == "THEN" || tokens[i] == "then")) { ccodeArgs << opcodes["THEN"]; }
         else if (tokens[i] != "") { ccodeArgs << " "; ccodeArgs << tokens[i]; }
     }
@@ -99,7 +112,7 @@ void thenify_tokens(int index) {
 
 //Thenify complex
 void thenify_tokens(int index, string separatorUppercase, string separatorLowercase) {
-    for (int i = index; i<tokens.size(); i++) {
+    for (int i = index; i<tokCount+1; i++) {
         if (tokens[i] != "" and (tokens[i] == "THEN" || tokens[i] == "then")) {
             replace(ccode, "\4", opcodes["THEN"]);
             break;
@@ -117,19 +130,37 @@ void thenify_tokens(int index, string separatorUppercase, string separatorLowerc
     }
 }
 
+void function_declaration() {
+    if (functionExists) outfile << "}\n";
+    functionExists = true;
+    ccode = opcodes["function:"];
+    replace(tokens[0], ":", "");
+    replace(tokens[1], ":", "");
+    if (tokens[1][0] == '<' and tokens[1].at(tokens[1].length()-1) == '>') {
+        replace(ccode, "\2", tokens[1]);
+        replace(ccode, "<", "");
+        replace(ccode, ">", "");
+        transform(ccode.begin(), ccode.end(), ccode.begin(), ::tolower);
+    } else { replace(ccode, "\2", "void"); }
+    if (tokCount > 1) { colonize_tokens(2, false, true); replace(ccode, "\3", ccodeArgs.str()); ccodeArgs.str(string()); }
+    else { replace(ccode, "\3", ""); }
+    replace(ccode, "\1", tokens[0]);
+    replace(ccode, ":", "");
+}
+
 //Ceiling to C translator
 void ceil_to_c() {
     replace(line, "    ", "");
     tokens.clear();
-    tokens.resize(MAX_TOKENS);
     tokenization(line);
     code = tokens[0];
-    if (code[code.length()-1] != ':') transform(code.begin(), code.end(), code.begin(), ::toupper);
     
+    if (code[code.length()-1] != ':') transform(code.begin(), code.end(), code.begin(), ::toupper);
     ///Checking opcodes and converting to C
     // Default functions
     if (code == "") {} else
     if (code == "start:") {
+        if (functionExists) outfile << "}\n\n";
         outfile << opcodes["start:"];
     } else
     if (code == "update:") {
@@ -142,7 +173,7 @@ void ceil_to_c() {
         if (tokens[2] == ""){
             replace(ccode, "\2", "");
         } else {
-            colonize_tokens(2, true);
+            colonize_tokens(2, true, false);
             replace(ccode, "\2", ccodeArgs.str());
             ccodeArgs.str(string());
         }
@@ -163,7 +194,7 @@ void ceil_to_c() {
         ccode = opcodes["INT"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            colonize_tokens(3, false);
+            colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
@@ -171,7 +202,7 @@ void ceil_to_c() {
         ccode = opcodes["STRING"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            colonize_tokens(3, false);
+            colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
@@ -179,7 +210,7 @@ void ceil_to_c() {
         ccode = opcodes["CHAR"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            colonize_tokens(3, false);
+            colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
@@ -187,7 +218,7 @@ void ceil_to_c() {
         ccode = opcodes["FLOAT"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            colonize_tokens(3, false);
+            colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
@@ -195,7 +226,7 @@ void ceil_to_c() {
         ccode = opcodes["BOOL"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=")
-            colonize_tokens(3, false);
+            colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         ccodeArgs.str(string());
         outfile << ccode;
@@ -267,9 +298,27 @@ void ceil_to_c() {
             ccodeArgs.str(string());
         }
         outfile << ccode;
-    //handeling nonexistant opcodes, comments and variable manipulation
-    } else if (code[0] != '/' and code[1] != '/') {
-        if (tokens[1] != "=" and tokens[1] != "+=" and tokens[1] != "-=" and tokens[1] != "*=" and tokens[1] != "/=") {
+    //functions
+    } else if (code == "RETURN") {
+        ccode = opcodes["RETURN"];
+        colonize_tokens(1, false, false);
+        replace(ccode, "\1", ccodeArgs.str());
+        outfile << ccode;
+        ccodeArgs.str(string());
+    } else if (code == "CALLIN") {
+        ccode = opcodes["CALLIN"];
+        replace(ccode, "\1", tokens[1]);
+        colonize_tokens(2, true, true);
+        replace(ccode, "\2", ccodeArgs.str());
+        outfile << ccode;
+        ccodeArgs.str(string());
+    }
+    //handeling nonexistant opcodes, comments, function creation and variable manipulation
+    else if (code[0] != '/' and code[1] != '/') {
+        if (line[line.length()-1] == ':') {
+            function_declaration();
+            outfile << ccode;
+        } else if (line[line.length()-1] != ':' and (tokens[1] != "=" and tokens[1] != "+=" and tokens[1] != "-=" and tokens[1] != "*=" and tokens[1] != "/=")) {
             std::stringstream errMessage;
             errMessage << "\"" << code << "\" at line " << lineNumber << " doesn't exist.";
             throw std::invalid_argument(errMessage.str().c_str());
@@ -299,6 +348,7 @@ int main(int argc, char* argv[]) {
             exit(EXIT_FAILURE);
         }
         outfile << opcodes["libs"];
+
         cout << "your.ceil file => output.c: ";
 
         while(getline(myfile, line)) { lineNumber++; ceil_to_c(); }
