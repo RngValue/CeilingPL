@@ -45,6 +45,7 @@ string argument;
 const char Separators[] = { ' ', 9 };
 char lineCharacter;
 
+//String tokenizer
 int tokenizing_quotes(string str, int i) {
     tokens[tokCount] += '\"';
     do {
@@ -55,6 +56,7 @@ int tokenizing_quotes(string str, int i) {
     return i;
 }
 
+//Tokenizer
 void tokenization(string str) {
     tokCount = 0;
     tokens.push_back("");
@@ -70,6 +72,7 @@ void tokenization(string str) {
     }
 }
 
+//The replace function (Replace all instances of a certain string within a string with a different string)
 void replace(std::string& subject, const std::string& search, const std::string& replace) {
     size_t pos = 0;
     while ((pos = subject.find(search, pos)) != std::string::npos) {
@@ -78,6 +81,7 @@ void replace(std::string& subject, const std::string& search, const std::string&
     }
 }
 
+//Colonize function (either separate tokens by colons or don't)
 void colonize_tokens(int index, bool whichone) {
     for (int i = index; i<tokens.size(); i++) {
         if (tokens[i] != "" and whichone) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
@@ -111,6 +115,7 @@ void thenify_tokens(int index, string separatorUppercase, string separatorLowerc
     }
 }
 
+//Ceiling to C translator
 void ceil_to_c() {
     replace(line, "    ", "");
     tokens.clear();
@@ -273,6 +278,7 @@ void ceil_to_c() {
     }
 }
 
+//The main function
 int main(int argc, char* argv[]) {
     upt_dict();
     if (argc < 2) {
