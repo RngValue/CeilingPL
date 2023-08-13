@@ -43,7 +43,7 @@ string line;
 string argument;
 
 const char Separators[] = { ' ', 9 };
-char c;
+char lineCharacter;
 
 int tokenizing_quotes(string str, int i) {
     tokens[tokCount] += '\"';
@@ -60,13 +60,13 @@ void tokenization(string str) {
     tokens.push_back("");
     for (size_t i = 0; i < str.length(); i++) {
         tokens.push_back("");
-        c = str[i];
-        if (c == ' ') {
+        lineCharacter = str[i];
+        if (lineCharacter == ' ') {
             tokCount++;
-        } else if (c == '\"') {
+        } else if (lineCharacter == '\"') {
             i++;
             i = tokenizing_quotes(str, i);
-        } else { tokens[tokCount] += c; }
+        } else { tokens[tokCount] += lineCharacter; }
     }
 }
 
