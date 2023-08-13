@@ -11,7 +11,7 @@ void show_help() {
 }
 
 //Documentation
-const int MAX_HELP_PAGES = 3;
+const int MAX_HELP_PAGES = 4;
 void print_dict(char page){
     cout << "======================PAGE " << page << "/" << MAX_HELP_PAGES << "=======================\n";
     switch(page){
@@ -45,6 +45,13 @@ void print_dict(char page){
             cout << "DO" << "\n";
             cout << "   [code]" << "\t\t\t" << "Do while loop.\n";
             cout << "WHEN [condition]" << "\n";
+            break;
+        case '4':
+            cout << "[functions]\n";
+            cout << "your_function <[type]> [variables]:" << "\n\t\t\t\t" << "A function (default type is void).\n";
+            cout << "RETURN [value/variable]" <<  "\t\t" << "Returns value.\n";
+            cout << "CALLIN your_function [variables]" << "\n\t\t\t\t" << "Call a function.\n";
+            cout << "CALLTO your_function [variables] TO [variable]" << "\n\t\t\t\t" << "In case your function returns a value, this command\n\t\t\t\tallows you to store it within a variable.";
             break;
         default:
             cout << "Page " << page << " doesn't exist.\n";
