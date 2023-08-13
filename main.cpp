@@ -81,7 +81,7 @@ void replace(std::string& subject, const std::string& search, const std::string&
     }
 }
 
-//Colonize function (either separate tokens by colons or don't)
+//Colonize function (either separate tokens by colons, or don't, and add to a string)
 void colonize_tokens(int index, bool whichone) {
     for (int i = index; i<tokens.size(); i++) {
         if (tokens[i] != "" and whichone) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
