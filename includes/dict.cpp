@@ -34,4 +34,8 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("END", "}\n"));
     opcodes.insert(pair<string, string>("DO", "do {\n"));
     opcodes.insert(pair<string, string>("WHEN", "} while (\1);\n"));
+    //Functions
+    opcodes.insert(pair<string, string>("RETURN","return \1;"));
+    opcodes.insert(pair<string, string>("CALLIN","\1(\2);"));
+    opcodes.insert(pair<string, string>("CALLTO","\3 = \1(\2);"));
 }
