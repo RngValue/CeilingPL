@@ -50,7 +50,7 @@ void print_dict(char page){
             cout << "[functions]\n";
             cout << "your_function <[type]> [variables]:" << "\n\t\t\t\t" << "A function (default type is void).\n";
             cout << "RETURN [value/variable]" <<  "\t\t" << "Returns value.\n";
-            cout << "CONTINUE" <<  "\t\t" << "Continue statement.\n";
+            cout << "CONTINUE" <<  "\t\t\t" << "Continue statement.\n";
             cout << "CALLIN your_function [variables]" << "\n\t\t\t\t" << "Call a function.\n";
             cout << "CALLTO your_function [variables] TO [variable]" << "\n\t\t\t\t" << "In case your function returns a value, this command\n\t\t\t\tallows you to store it within a variable.";
             break;
