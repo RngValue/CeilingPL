@@ -151,6 +151,7 @@ void function_declaration() {
 
 //Ceiling to C translator
 void ceil_to_c() {
+    replace(line, "\n", "");
     replace(line, "    ", "");
     tokens.clear();
     tokenization(line);
@@ -352,7 +353,8 @@ int main(int argc, char* argv[]) {
     }
     argument = argv[1];
     if (argument == "-o"){ //Compile code
-        myfile.open(argv[2]);
+        //myfile.open(argv[2]);
+        myfile = std::ifstream(argv[2], std::ios::out);
         if(myfile.fail()) {
             perror("Couldn't open the file");
             exit(EXIT_FAILURE);
@@ -365,7 +367,7 @@ int main(int argc, char* argv[]) {
 
         cout << "your.ceil file => output.c: ";
 
-        while(getline(myfile, line)) { lineNumber++; ceil_to_c(); }
+        while(getline(myfile, line)) { replace(line, "\r", "\n"); lineNumber++; ceil_to_c(); }
 
         if(updateExists) { outfile << "}}"; } else { outfile << "return 0;\n}"; }
         outfile.close();

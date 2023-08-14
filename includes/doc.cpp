@@ -30,7 +30,7 @@ void print_dict(char page){
             cout << "[console]\n";
             cout << "COUT [string] [variable/value]" << "\t" << "Outputs a string into the console. Allows C-like formating.\n";
             cout << "CCIN [string] [variable]" << "\t" << "Checks user input and stores it into a variable. (Just like scanf in C)\n";
-            cout << "CGIN" << "\t\t\t\t" << "Waits for user to press enter.\n";
+            cout << "CGIN" << "\t\t\t\t" << "Waits for user to press enter. (Not yet compatible with Linux.)\n";
             cout << "CTER" << "\t\t\t\t" << "Terminates program.\n";
             break;
         case '3':
@@ -52,7 +52,7 @@ void print_dict(char page){
             cout << "RETURN [value/variable]" <<  "\t\t" << "Returns value.\n";
             cout << "CONTINUE" <<  "\t\t\t" << "Continue statement.\n";
             cout << "CALLIN your_function [variables]" << "\n\t\t\t\t" << "Call a function.\n";
-            cout << "CALLTO your_function [variables] TO [variable]" << "\n\t\t\t\t" << "In case your function returns a value, this command\n\t\t\t\tallows you to store it within a variable.";
+            cout << "CALLTO your_function [variables] TO [variable]" << "\n\t\t\t\t" << "In case your function returns a value, this command\n\t\t\t\tallows you to store it within a variable.\n";
             break;
         default:
             cout << "Page " << page << " doesn't exist.\n";
