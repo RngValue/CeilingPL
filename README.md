@@ -5,7 +5,7 @@
 <h2>How it works</h2>
 <p>The Ceiling Compiler is written in C++ and compiles your project into C code, which is then compiled using gcc. <br><sub><sub>(Basically, make sure you have gcc working)</sub></sub></p>
 <h3>How to compile your project</h3>
-<p>Works similarly to how you would compile your project using gcc/g++. (Depending on the operating system, you would want to include a file extension like ".exe".)</p>
+<p>Works similarly to how you would compile your project using gcc/g++. (Depending on the operating system, you would want to include a file extension like ".exe")</p>
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
 <p>You can also check your compiler's version by doing this.</p>
 <pre><code>ceilbuild -v</code></pre>
