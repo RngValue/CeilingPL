@@ -306,6 +306,10 @@ void ceil_to_c() {
         replace(ccode, "\1", ccodeArgs.str());
         outfile << ccode;
         ccodeArgs.str(string());
+    } else if (code == "CONTINUE") {
+        ccode = opcodes["CONTINUE"];
+        outfile << ccode;
+        ccodeArgs.str(string());
     } else if (code == "CALLIN") {
         ccode = opcodes["CALLIN"];
         replace(ccode, "\1", tokens[1]);
