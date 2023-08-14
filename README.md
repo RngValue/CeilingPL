@@ -23,12 +23,7 @@
 <ul>
   <li>Adding SDL support, because GUI slaps hard</li>
   <li>Making web scraping easier, because the reddit api pricing is a joke</li>
-  <li>Winning the Nobel Peace Prize</li>
-  <li>Becoming a corporate entity</li>
-  <li>Getting drowned in money and fame</li>
-  <li>Enslaving entire nations</li>
-  <li>Becoming the leader of the whole universe</li>
-  <li>Adding Functions</li>
+  <li>Libraries, because... libraries are pog</li>
 </ul>
 <p><sub>(None of the above is guaranteed to happen tho...)</sub></p>
 
