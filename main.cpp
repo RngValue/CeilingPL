@@ -20,6 +20,7 @@ const char CEILING_VERSION[] = "Ceiling Programming Language v0.1-DEV1";
 
 int lineNumber = 0;
 int tokCount = 0;
+int lenghtOfIndentation;
 
 bool isInRange = false;
 bool isInEquel = false;
@@ -151,11 +152,18 @@ void function_declaration() {
 
 //Ceiling to C translator
 void ceil_to_c() {
+    lenghtOfIndentation = 0;
+    for (int i = 0; i<=line.length(); i++) {
+        if (line[i] != ' ') break;
+        lenghtOfIndentation++;
+    }
     replace(line, "\n", "");
-    replace(line, "    ", "");
+    replace(line, "\t", "");
+    line.erase(0, lenghtOfIndentation);
     tokens.clear();
     tokenization(line);
     code = tokens[0];
+    cout << code;
     
     if (code[code.length()-1] != ':') transform(code.begin(), code.end(), code.begin(), ::toupper);
     ///Checking opcodes and converting to C
