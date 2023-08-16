@@ -37,6 +37,7 @@ std::stringstream systemCom;
 std::ifstream myfile;
 std::ofstream outfile("output.c");
 
+string charactersToSkip = "(),;";
 string preTok;
 string code;
 string ccode;
@@ -57,18 +58,39 @@ int tokenizing_quotes(string str, int i) {
     return i;
 }
 
+//Character tokenizer
+int tokenizing_singlequotes(string str, int i) {
+    tokens[tokCount] += '\'';
+    do {
+        if (str[i-1] == '\\') { i++; tokens[tokCount] += '\''; }
+        while (str[i] != '\'') { tokens[tokCount] += str[i]; i++; }
+    } while (str[i-1] == '\\' and str[i-2] != '\\');
+    tokens[tokCount] += '\'';
+    return i;
+}
+
 //Tokenizer
+bool isinArray = false;
 void tokenization(string str) {
     tokCount = 0;
     tokens.push_back("");
     for (size_t i = 0; i < str.length(); i++) {
         tokens.push_back("");
         lineCharacter = str[i];
+        if (lineCharacter == '{') { isinArray=true; }
+        else if (lineCharacter == '}') { isinArray=false; }
         if (lineCharacter == ' ') {
             tokCount++;
+        } else if (charactersToSkip.find(lineCharacter) != std::string::npos) {
+            if (lineCharacter == ',' and isinArray) tokens[tokCount] += lineCharacter;
+            if (str[i+1] == ' ') i++;
+            else tokCount++;
         } else if (lineCharacter == '\"') {
             i++;
             i = tokenizing_quotes(str, i);
+        } else if (lineCharacter == '\'') {
+            i++;
+            i = tokenizing_singlequotes(str, i);
         } else { tokens[tokCount] += lineCharacter; }
     }
 }
@@ -82,7 +104,8 @@ void replace(std::string& subject, const std::string& search, const std::string&
     }
 }
 
-//Colonize function (either separate tokens by colons, or don't, and add to a string)
+//Colonize function
+//There is no pattern to look for, when it comes to condOne and condTwo
 void colonize_tokens(int index, bool condOne, bool condTwo) {
     for (int i = index; i<tokCount+1; i++) {
         if (tokens[i] != "" and condOne and condTwo == false) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
