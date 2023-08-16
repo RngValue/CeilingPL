@@ -105,7 +105,7 @@ void replace(std::string& subject, const std::string& search, const std::string&
 }
 
 //Colonize function
-/*There is no pattern when it comes to condOne and condTwo:
+/*There is no pattern to go off of when it comes to condOne and condTwo:
 | condOne | condTwo |   conversion
 | true    | false   |   , token1, token2, token3...
 | false   | false   |   token1 token2 token3 ...
