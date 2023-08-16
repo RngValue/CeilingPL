@@ -95,7 +95,7 @@ void tokenization(string str) {
     }
 }
 
-//The replace function (Replace all instances of a certain string within a string with a different string)
+//The replace function (Replaces all instances of a certain string within a string with a different string)
 void replace(std::string& subject, const std::string& search, const std::string& replace) {
     size_t pos = 0;
     while ((pos = subject.find(search, pos)) != std::string::npos) {
