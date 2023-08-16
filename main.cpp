@@ -104,7 +104,13 @@ void replace(std::string& subject, const std::string& search, const std::string&
     }
 }
 
-//Colonize function (either separate tokens by colons, or don't, and add to a string)
+//Colonize function
+/*There is no pattern when it comes to condOne and condTwo:
+| condOne | condTwo |   conversion
+| true    | false   |   , token1, token2, token3...
+| false   | false   |   token1 token2 token3 ...
+| false   | true    |   token1 token2, token3 token4...
+| true    | true    |   token1token2 ("to" appears) token3, token4... */
 void colonize_tokens(int index, bool condOne, bool condTwo) {
     for (int i = index; i<tokCount+1; i++) {
         if (tokens[i] != "" and condOne and condTwo == false) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
