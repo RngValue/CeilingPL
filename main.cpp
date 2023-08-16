@@ -12,11 +12,6 @@
 
 using std::cout;
 using std::string;
-using std::endl;
-
-//using std::cout;
-
-const char CEILING_VERSION[] = "Ceiling Programming Language v0.1-DEV1";
 
 int lineNumber = 0;
 int tokCount = 0;
@@ -38,14 +33,13 @@ std::stringstream systemCom;
 std::ifstream myfile;
 std::ofstream outfile("output.c");
 
-string charactersToSkip = "(),;";
-string preTok;
+const string CEILING_VERSION = "Ceiling Programming Language v0.1-DEV1";
+const string charactersToSkip = "(),;";
 string code;
 string ccode;
 string line;
 string argument;
 
-const char Separators[] = { ' ', 9 };
 char lineCharacter;
 
 //String tokenizer
@@ -412,7 +406,7 @@ int main(int argc, char* argv[]) {
         system(systemCom.str().c_str());
         cout << "done\n";
     }else if (argument == "-v"){ //CHECK VERSION
-        cout << CEILING_VERSION << "\n";
+        cout << CEILING_VERSION.c_str() << "\n";
     }else if (argument == "-h"){ //HELP
         print_dict((char)*argv[2]);
     } else {
