@@ -20,8 +20,8 @@ void upt_dict() {
     opcodes.insert(pair<string, string>("BOOL", "bool \1 = \2;\n"));
     //Console
     opcodes.insert(pair<string, string>("COUT", "printf(\1 \2);\n"));
-    opcodes.insert(pair<string, string>("CCIN", "fflush(stdin);\nscanf(\1,\2);\n"));
-    opcodes.insert(pair<string, string>("CGIN", "fflush(stdin);\ngetc(stdin);\n"));
+    opcodes.insert(pair<string, string>("CCIN", "scanf(\1,\2);\n"));
+    opcodes.insert(pair<string, string>("CGIN", "while(getchar() != \'\\n\'){};\n"));
     opcodes.insert(pair<string, string>("CTER", "exit(0);\n"));
     //Conditionals & loops
     opcodes.insert(pair<string, string>("IF", "if (\1"));
