@@ -22,6 +22,7 @@ int lineNumber = 0;
 int tokCount = 0;
 int lenghtOfIndentation;
 
+bool isinArray = false;
 bool isInRange = false;
 bool isInEquel = false;
 bool updateExists = false;
@@ -70,7 +71,6 @@ int tokenizing_singlequotes(string str, int i) {
 }
 
 //Tokenizer
-bool isinArray = false;
 void tokenization(string str) {
     tokCount = 0;
     tokens.push_back("");
@@ -104,8 +104,7 @@ void replace(std::string& subject, const std::string& search, const std::string&
     }
 }
 
-//Colonize function
-//There is no pattern to look for, when it comes to condOne and condTwo
+//Colonize function (either separate tokens by colons, or don't, and add to a string)
 void colonize_tokens(int index, bool condOne, bool condTwo) {
     for (int i = index; i<tokCount+1; i++) {
         if (tokens[i] != "" and condOne and condTwo == false) { ccodeArgs << ", "; ccodeArgs << tokens[i]; }
