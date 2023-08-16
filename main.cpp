@@ -163,7 +163,6 @@ void ceil_to_c() {
     tokens.clear();
     tokenization(line);
     code = tokens[0];
-    cout << code;
     
     if (code[code.length()-1] != ':') transform(code.begin(), code.end(), code.begin(), ::toupper);
     ///Checking opcodes and converting to C
