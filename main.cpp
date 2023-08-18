@@ -17,9 +17,10 @@ int lineNumber = 0;
 int tokCount = 0;
 int lenghtOfIndentation;
 
-bool isinArray = false;
+bool isInArray = false;
 bool isInRange = false;
 bool isInEquel = false;
+bool isInLogic = false;
 bool updateExists = false;
 bool functionExists = false;
 
@@ -71,12 +72,14 @@ void tokenization(string str) {
     for (size_t i = 0; i < str.length(); i++) {
         tokens.push_back("");
         lineCharacter = str[i];
-        if (lineCharacter == '{') { isinArray=true; }
-        else if (lineCharacter == '}') { isinArray=false; }
+        if (lineCharacter == '{') { isInArray=true; }
+        else if (lineCharacter == '}') { isInArray=false; }
+        if (lineCharacter == '=') { isInEquel=true; }
         if (lineCharacter == ' ') {
             tokCount++;
         } else if (charactersToSkip.find(lineCharacter) != std::string::npos) {
-            if (lineCharacter == ',' and isinArray) tokens[tokCount] += lineCharacter;
+            if (lineCharacter == ',' and isInArray) tokens[tokCount] += lineCharacter;
+            if ((lineCharacter == '(' or lineCharacter == ')') and isInEquel) tokens[tokCount] += lineCharacter;
             if (str[i+1] == ' ') i++;
             else tokCount++;
         } else if (lineCharacter == '\"') {
@@ -87,6 +90,7 @@ void tokenization(string str) {
             i = tokenizing_singlequotes(str, i);
         } else { tokens[tokCount] += lineCharacter; }
     }
+    isInEquel = false;
 }
 
 //The replace function (Replaces all instances of a certain string within a string with a different string)
@@ -224,41 +228,51 @@ void ceil_to_c() {
     } else if (code == "INT") {
         ccode = opcodes["INT"];
         replace(ccode, "\1", tokens[1]);
-        if (tokens[2] == "=")
+        if (tokens[2] == "=") {
+            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
+        }
         ccodeArgs.str(string());
         outfile << ccode;
     } else if (code == "STRING") {
         ccode = opcodes["STRING"];
         replace(ccode, "\1", tokens[1]);
-        if (tokens[2] == "=")
+        if (tokens[2] == "=") {
+            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
+        }
         ccodeArgs.str(string());
         outfile << ccode;
     } else if (code == "CHAR") {
         ccode = opcodes["CHAR"];
         replace(ccode, "\1", tokens[1]);
-        if (tokens[2] == "=")
+        if (tokens[2] == "=") {
+            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
+        }
         ccodeArgs.str(string());
         outfile << ccode;
     } else if (code == "FLOAT") {
         ccode = opcodes["FLOAT"];
         replace(ccode, "\1", tokens[1]);
-        if (tokens[2] == "=")
+        if (tokens[2] == "=") {
+            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
+        }
         ccodeArgs.str(string());
         outfile << ccode;
     } else if (code == "BOOL") {
         ccode = opcodes["BOOL"];
         replace(ccode, "\1", tokens[1]);
-        if (tokens[2] == "=")
+        if (tokens[2] == "=") {
+            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
+        }
         ccodeArgs.str(string());
         outfile << ccode;
     //Conditions and loops
