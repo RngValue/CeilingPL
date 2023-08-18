@@ -229,7 +229,6 @@ void ceil_to_c() {
         ccode = opcodes["INT"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=") {
-            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         }
@@ -239,7 +238,6 @@ void ceil_to_c() {
         ccode = opcodes["STRING"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=") {
-            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         }
@@ -249,7 +247,6 @@ void ceil_to_c() {
         ccode = opcodes["CHAR"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=") {
-            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         }
@@ -259,7 +256,6 @@ void ceil_to_c() {
         ccode = opcodes["FLOAT"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=") {
-            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         }
@@ -269,7 +265,6 @@ void ceil_to_c() {
         ccode = opcodes["BOOL"];
         replace(ccode, "\1", tokens[1]);
         if (tokens[2] == "=") {
-            isInEquel = true;
             colonize_tokens(3, false, false);
             replace(ccode, "\2", ccodeArgs.str());
         }
