@@ -133,6 +133,12 @@
 </details>
 <details>
   <summary>This is also legal:</summary>
+
+  ```
+  start:
+    cOuT;"This is fine",(
+  ```
+
 </details>
 
 <h2>How it works</h2>
