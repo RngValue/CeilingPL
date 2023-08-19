@@ -80,7 +80,9 @@ void tokenization(string str) {
         } else if (charactersToSkip.find(lineCharacter) != std::string::npos) {
             if (lineCharacter == ',' and isInArray) tokens[tokCount] += lineCharacter;
             if ((lineCharacter == '(' or lineCharacter == ')') and isInEquel) tokens[tokCount] += lineCharacter;
-            if (str[i+1] == ' ') i++;
+            if (str[i+1] == ' ') continue;
+            else if (i == str.length()-2 and charactersToSkip.find(str[i+1]) != std::string::npos) break;
+            else if (i == str.length()-1) break;
             else tokCount++;
         } else if (lineCharacter == '\"') {
             i++;
@@ -156,6 +158,7 @@ void thenify_tokens(int index, string separatorUppercase, string separatorLowerc
             ccodeArgsAddAdd << tokens[i];
         } else { ccodeArgs << " "; ccodeArgs << tokens[i]; }
     }
+    isInEquel = false;
 }
 
 void function_declaration() {
