@@ -3,8 +3,7 @@
 <p align=center><sub><sub>(I am seriously considering changing the logo...)</sub></sub></p>
 
 <h2>How the language looks like</h2>
-<p>Ceiling allows for many ways to write your code.</p>
-<p>It doesn't matter weather you come from Javascript, Lua, or even Assembly code. The way you're used to writing code will not have to change drastically.</p>
+<p>Ceiling wants to be friends with everyone.<br>It doesn't matter whether you're coming from Javascript, Lua, or even Assembly code. The way you're used to writing code will not have to change drastically.</p>
 <details>
   <summary>Assembly-like syntax "style":</summary>
   
