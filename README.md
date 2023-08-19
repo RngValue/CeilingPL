@@ -3,13 +3,73 @@
 <p align=center><sub><sub>(I am seriously considering changing the logo...)</sub></sub></p>
 
 <h2>How the language looks like</h2>
-<p>Ceiling allows for many syntax "styles".</p>
-<p>It doesn't matter weather you come from Javascript, Lua, or even Assembly code.</p>
+<p>Ceiling allows for many ways to write your code.</p>
+<p>It doesn't matter weather you come from Javascript, Lua, or even Assembly code. The way you're used to writing code will not have to change drastically.</p>
 <details>
   <summary>Assembly-like syntax "style":</summary>
+  
+  ```
+  example_function:
+    COUT "This is a function. Defaults to a void function if type is not specified.\n"
+
+  another_example_function <int> int number:
+    COUT "This is also a function. The type of this function is specified within the arrow brackets.\n"
+    RETURN number
+
+  start:
+    COUT "This is the main function. All of your own functions go above it.\n"
+    INT exampleInteger = 0
+    FLOAT exampleFloat = 0.0
+    BOOL exampleBoolean = false
+    CHAR exampleCharacter = 'a'
+    STRING exampleString = "This is an array of characters!"
+
+    //Code is read line by line, therefore comments should only be on their own lines
+    //This is how you can store user input within a variable
+    CCIN "%s" exampleString
+
+    //This way you can check for when the user presses [ENTER] (also good for flushing stdin after CCIN)
+    CGIN 
+    COUT "You said: %s\n" exampleString
+
+    //This is how you call a function
+    CALLIN example_function
+    //This way you can store a returned value
+    CALLTO another_example_function 10 TO exampleInteger
+
+    //This is an if statement
+    IF exampleCharacter == 'a' && exampleInteger == 0 THEN
+      COUT "Yay!\n"
+    ELIF exampleCharacter == 'b' THEN
+      COUT "Yeah!\n"
+    ELSE
+      COUT "Oof\n"
+    END
+
+    //This is a for loop
+    FOR i = 0 IN 10 THEN
+      COUT "%d\n" i
+    END
+
+    //This is a while loop
+    WHILE exampleBoolean THEN
+      exampleBoolean = false
+    END
+
+    //This is a do-while loop
+    DO
+      exampleBoolean = true
+    WHEN !exampleBoolean
+
+  update:
+    COUT "This is an update function! It goes at the very end of your program.\nIt repeats itself until the program is terminated.\n"
+    //This is how you terminate your program
+    CTER
+  ```
+  
 </details>
 <details>
-  <summary>Javascript-like syntax "style":</summary>
+  <summary>Javascript/Lue-like syntax "style":</summary>
 </details>
 <details>
   <summary>This is also legal:</summary>
