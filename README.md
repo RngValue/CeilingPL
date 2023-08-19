@@ -70,6 +70,66 @@
 </details>
 <details>
   <summary>Javascript/Lue-like syntax "style":</summary>
+   
+  ```
+  example_function:
+    cout("This is a function. Defaults to a void function if type is not specified.\n");
+
+  another_example_function <int> int number:
+    cout("This is also a function. The type of this function is specified within the arrow brackets.\n");
+    return number;
+
+  start:
+    cout("This is the main function. All of your own functions go above it.\n");
+    int exampleInteger = 0;
+    float exampleFloat = 0.0;
+    bool exampleBoolean = false;
+    char exampleCharacter = 'a';
+    string exampleString = "This is an array of characters!";
+
+    //Code is read line by line, therefore comments should only be on their own lines
+    //This is how you can store user input within a variable
+    ccin("%s", exampleString);
+
+    //This way you can check for when the user presses [ENTER] (also good for flushing stdin after CCIN)
+    cgin();
+    cout("You said: %s\n", exampleString);
+
+    //This is how you call a function
+    callin(example_function);
+    //This way you can store a returned value
+    callto(another_example_function, 10) to exampleInteger;
+
+    //This is an if statement
+    if exampleCharacter == 'a' && exampleInteger == 0 then
+      cout("Yay!\n");
+    elif exampleCharacter == 'b' then
+      cout("Yeah!\n");
+    else
+      cout("Oof\n");
+    end
+
+    //This is a for loop
+    for i = 0 in 10 then
+      cout("%d\n", i);
+    end
+
+    //This is a while loop
+    while exampleBoolean then
+      exampleBoolean = false;
+    end
+
+    //This is a do-while loop
+    do
+      exampleBoolean = true;
+    when !exampleBoolean
+
+  update:
+    cout("This is an update function! It goes at the very end of your program.\nIt repeats itself until the program is terminated.\n");
+    //This is how you terminate your program
+    cter();
+  ```
+ 
 </details>
 <details>
   <summary>This is also legal:</summary>
