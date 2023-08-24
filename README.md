@@ -167,6 +167,7 @@
 
 <h2>Links related to the github repo</h2>
 <h3><a href="LICENSE">License</a></h3>
+<h3><a href="CONTRIBUTING.md">Contributing</a></h3>
 <h3><a href="CODE_OF_CONDUCT.md">Code of conduct</a></h3>
 <h3><a href=".github/ISSUE_TEMPLATE/bug_report.md">Bug reports</a></h3>
 <h3><a href=".github/ISSUE_TEMPLATE/feature_request.md">Feature requests</a></h3>
