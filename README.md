@@ -160,7 +160,7 @@
 <h3>Some of the things I have in mind include:</h3>
 <ul>
   <li>Adding a built in graphics library, because GUI slaps hard</li>
-  <li>Making web scraping easier, because the Reddit api pricing is a joke</li>
+  <li>Making web scraping easier, because the <a href="https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Flastnmth1peb1.png">Reddit</a> api pricing is a joke</li>
   <li>Libraries, because... libraries are pog</li>
   <li>Math functions, so you don't have to make them from scratch</li>
 </ul>
