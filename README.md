@@ -1,5 +1,5 @@
 <h1 align=center><img src="readme_res/Banner.png"></h1>
-<p align=center><strong>Ceiling is an oversimplified programming language.<br> It's currently being developed by a high school IT student for no actual reason.</strong></p>
+<p align=center><strong>CeilingPL is the definition of an "easy to use" programming language.<br> It's currently being developed by a high school IT student for no actual reason.</strong></p>
 <p align=center><sub><sub>(I am seriously considering changing the logo...)</sub></sub></p>
 
 <h2>How the language looks like</h2>
