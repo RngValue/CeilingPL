@@ -162,7 +162,7 @@
   <li>Adding SDL support, because GUI slaps hard</li>
   <li>Making web scraping easier, because the reddit api pricing is a joke</li>
   <li>Libraries, because... libraries are pog</li>
-  <li>Math functions, so you don't have to make them by yourself</li>
+  <li>Math functions, so you don't have to make them from scratch</li>
 </ul>
 <p><sub>(None of the above is guaranteed to happen tho...)</sub></p>
 
