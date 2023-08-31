@@ -1,5 +1,5 @@
 <h1 align=center><img src="readme_res/Banner.png"></h1>
-<p align=center><strong>CeilingPL is the definition of an "easy to use" programming language.<br> It's currently being developed by a high school IT student for no actual reason.</strong></p>
+<p align=center><strong>CeilingPL is the definition of a friendly programming language.<br> It's currently being developed by a high school IT student for no actual reason.</strong></p>
 <p align=center><sub><sub>(I am seriously considering changing the logo...)</sub></sub></p>
 
 <h2>How the language looks like</h2>
@@ -142,6 +142,7 @@
 
 <h2>How it works</h2>
 <p>The Ceiling Compiler is written in C++ and compiles your project into C code, which is then compiled using gcc. <br><sub><sub>(Basically, make sure you have gcc working)</sub></sub></p>
+<p>Due to my own error, the code isn't parsed and I'd rather make a new programming language than to fix it.</p>
 <h3>How to compile your project</h3>
 <p>Works similarly to how you would compile your project using gcc/g++. (Depending on the operating system, you would want to include a file extension like ".exe")</p>
 <pre><code>ceilbuild -o [path to your .ceil file] [path to your final executable file]</code></pre>
