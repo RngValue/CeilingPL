@@ -1,6 +1,6 @@
 <h1 align=center><img src="readme_res/Banner.png"></h1>
-<p align=center><strong>CeilingPL is the definition of a friendly programming language.<br> It's currently being developed by a high school IT student for no actual reason.</strong></p>
-<p align=center><sub><sub>(I am seriously considering changing the logo...)</sub></sub></p>
+<p align=center><strong>CeilingPL is the definition of a friendly programming language.<br>It's been developed to test out my coding skills.</strong></p>
+<p align=center><sub><sub>(I do NOT recommend using this programming language in a proffesional environment!)</sub></sub></p>
 
 <h2>How the language looks like</h2>
 <p>Ceiling wants to be friends with everyone.<br>It doesn't matter whether you're coming from Javascript, Lua, or even Assembly code. The way you're used to coding will not have to change drastically. (kinda like Ruby)</p>
